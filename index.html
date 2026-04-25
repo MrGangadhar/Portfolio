@@ -50,8 +50,9 @@ a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,te
   radial-gradient(circle at 30% 28%,rgba(255,255,255,.22),transparent 18%),
   radial-gradient(circle at 68% 24%,rgba(255,255,255,.13),transparent 22%),
   linear-gradient(145deg,#0f172a,#1e293b 58%,#0b1222);}
-.intro-avatar-fallback span{display:block;font-family:var(--font-display);font-size:1.35rem;letter-spacing:.08em;}
-.intro-avatar-fallback small{display:block;font-size:.68rem;letter-spacing:.24em;text-transform:uppercase;color:#bfdbfe;margin-top:.15rem;}
+.avatar-monogram{display:grid;place-items:center;width:100%;height:100%;}
+.avatar-monogram span{display:block;font-family:var(--font-display);font-size:2rem;letter-spacing:.08em;line-height:1;color:#fff;text-shadow:0 10px 24px rgba(15,23,42,.45);}
+.avatar-monogram small{display:block;font-size:.64rem;letter-spacing:.24em;text-transform:uppercase;color:#bfdbfe;margin-top:.2rem;max-width:120px;line-height:1.35;}
 .intro-kicker{font-size:.73rem;letter-spacing:.22em;text-transform:uppercase;font-weight:800;opacity:.9;margin-bottom:.7rem;}
 .intro-title{font-family:var(--font-display);font-size:clamp(2rem,6.4vw,4.2rem);font-weight:800;line-height:1.05;letter-spacing:-1px;margin-bottom:.65rem;}
 .intro-title span{background:linear-gradient(135deg,#93c5fd,#e9d5ff,#67e8f9);background-clip:text;-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
@@ -356,7 +357,12 @@ footer{background:var(--ink);color:#fff;padding:3.5rem 5% 1.8rem;}
   <div class="intro-content">
     <div class="intro-avatar" aria-hidden="true">
       <img src="assets/profile.jpg" alt="Gangadhara portrait" onerror="this.style.display='none';this.nextElementSibling.style.display='grid';"/>
-      <div class="intro-avatar-fallback" style="display:none;"><div><span>GB</span><small>Profile Photo</small></div></div>
+      <div class="intro-avatar-fallback" style="display:none;">
+        <div class="avatar-monogram">
+          <span>GB</span>
+          <small>Full-Stack Developer</small>
+        </div>
+      </div>
     </div>
     <p class="intro-kicker">Developer Portfolio</p>
     <h1 class="intro-title">Crafting <span>Modern Web Experiences</span></h1>
