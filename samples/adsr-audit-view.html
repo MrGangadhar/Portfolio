@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta name="robots" content="noindex,nofollow"/>
+<title>ADSR Audit Visual Sample (View Only)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Sora:wght@600;700;800&display=swap" rel="stylesheet"/>
+<style>
+:root{
+  --bg:#020617;
+  --panel:#0f172a;
+  --panel-2:#111827;
+  --ink:#e2e8f0;
+  --muted:#94a3b8;
+  --blue:#38bdf8;
+  --violet:#a78bfa;
+  --green:#34d399;
+  --orange:#f59e0b;
+  --red:#f87171;
+  --line:#1e293b;
+  --radius:18px;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{
+  font-family:'Manrope',sans-serif;
+  color:var(--ink);
+  background:radial-gradient(circle at 12% 10%,#1e293b 0%,#020617 58%);
+  min-height:100vh;
+  line-height:1.6;
+  user-select:none;
+}
+.wrap{max-width:1100px;margin:0 auto;padding:28px 18px 40px;}
+.top{
+  background:linear-gradient(135deg,rgba(56,189,248,.18),rgba(167,139,250,.14));
+  border:1px solid rgba(148,163,184,.2);
+  border-radius:var(--radius);
+  padding:20px;
+  margin-bottom:16px;
+}
+.badge{display:inline-block;font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;font-weight:800;color:#0f172a;background:linear-gradient(135deg,#7dd3fc,#a7f3d0);padding:.3rem .6rem;border-radius:999px;}
+h1{font-family:'Sora',sans-serif;font-size:clamp(1.4rem,3.6vw,2.2rem);margin-top:.65rem;}
+.sub{color:var(--muted);font-size:.92rem;margin-top:.35rem;}
+.notice{margin-top:.75rem;color:#fcd34d;font-size:.8rem;font-weight:700;}
+.nav{display:flex;flex-wrap:wrap;gap:.5rem;margin:14px 0 18px;}
+.nav a{text-decoration:none;color:var(--ink);font-weight:700;font-size:.8rem;padding:.42rem .78rem;border:1px solid var(--line);border-radius:999px;background:rgba(15,23,42,.85);}
+.grid{display:grid;grid-template-columns:repeat(12,1fr);gap:12px;}
+.card{
+  background:linear-gradient(165deg,var(--panel),var(--panel-2));
+  border:1px solid var(--line);
+  border-radius:var(--radius);
+  padding:14px;
+}
+.kpi{grid-column:span 3;}
+.kpi .label{font-size:.72rem;color:var(--muted);}
+.kpi .value{font-size:1.55rem;font-weight:800;font-family:'Sora',sans-serif;line-height:1.15;}
+.kpi .trend{font-size:.74rem;font-weight:700;margin-top:.25rem;}
+.ok{color:var(--green);} .warn{color:var(--orange);} .bad{color:var(--red);}
+.full{grid-column:span 12;}
+.half{grid-column:span 6;}
+h2{font-family:'Sora',sans-serif;font-size:1.08rem;margin-bottom:.7rem;}
+.table{width:100%;border-collapse:collapse;overflow:hidden;border-radius:12px;border:1px solid var(--line);}
+.table th,.table td{padding:.58rem .52rem;text-align:left;font-size:.78rem;border-bottom:1px solid var(--line);}
+.table th{background:#0b1223;color:#bfdbfe;font-weight:700;}
+.table tr:last-child td{border-bottom:none;}
+.bar-wrap{display:grid;gap:.55rem;}
+.bar-row{display:grid;grid-template-columns:180px 1fr 58px;align-items:center;gap:.6rem;font-size:.78rem;}
+.bar-track{height:10px;background:#1f2937;border-radius:999px;overflow:hidden;}
+.bar{height:100%;background:linear-gradient(135deg,var(--blue),var(--violet));}
+.list{padding-left:1rem;display:grid;gap:.34rem;}
+.list li{font-size:.84rem;color:#cbd5e1;}
+.watermark{position:fixed;right:12px;bottom:10px;color:#64748b;font-size:.7rem;letter-spacing:.08em;text-transform:uppercase;pointer-events:none;}
+@media(max-width:900px){.kpi{grid-column:span 6;}.half{grid-column:span 12;}.bar-row{grid-template-columns:130px 1fr 52px;}}
+@media(max-width:600px){.kpi{grid-column:span 12;}.bar-row{grid-template-columns:108px 1fr 46px;}.table th,.table td{font-size:.72rem;padding:.5rem .4rem;}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <span class="badge">View Only Sample</span>
+    <h1>ADSR Analytics Audit - Visual Report</h1>
+    <p class="sub">Example of turning raw ad datasets into cleaned KPIs, audit findings, and executive-ready reporting.</p>
+    <p class="notice">Viewing is allowed. Download/export is intentionally restricted on this sample page.</p>
+  </header>
+
+  <nav class="nav">
+    <a href="#dashboard">KPI Dashboard</a>
+    <a href="#findings">Audit Findings</a>
+    <a href="#summary">Executive Summary</a>
+  </nav>
+
+  <section id="dashboard" class="grid" style="margin-bottom:12px;">
+    <article class="card kpi"><div class="label">Total Spend</div><div class="value">INR 2.85L</div><div class="trend warn">+4.1% vs previous month</div></article>
+    <article class="card kpi"><div class="label">Total Conversions</div><div class="value">1,258</div><div class="trend ok">+9.4% growth</div></article>
+    <article class="card kpi"><div class="label">Average CPA</div><div class="value">INR 226</div><div class="trend ok">-7.2% improvement</div></article>
+    <article class="card kpi"><div class="label">Blended ROAS</div><div class="value">4.9x</div><div class="trend ok">+11.6% uplift</div></article>
+
+    <article class="card half">
+      <h2>Channel Performance (ROAS)</h2>
+      <div class="bar-wrap">
+        <div class="bar-row"><span>Brand Search</span><div class="bar-track"><div class="bar" style="width:88%"></div></div><b>6.0</b></div>
+        <div class="bar-row"><span>Retargeting</span><div class="bar-track"><div class="bar" style="width:81%"></div></div><b>5.5</b></div>
+        <div class="bar-row"><span>Generic Search</span><div class="bar-track"><div class="bar" style="width:47%"></div></div><b>3.2</b></div>
+        <div class="bar-row"><span>Display</span><div class="bar-track"><div class="bar" style="width:39%"></div></div><b>2.7</b></div>
+      </div>
+    </article>
+
+    <article class="card half">
+      <h2>Weekly KPI Snapshot</h2>
+      <table class="table">
+        <thead>
+          <tr><th>Week</th><th>Spend</th><th>CTR</th><th>CPA</th><th>ROAS</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>03 Feb</td><td>INR 2.33L</td><td>3.05%</td><td>INR 225</td><td>4.94</td></tr>
+          <tr><td>10 Feb</td><td>INR 2.42L</td><td>3.04%</td><td>INR 223</td><td>4.97</td></tr>
+          <tr><td>17 Feb</td><td>INR 2.50L</td><td>3.03%</td><td>INR 225</td><td>4.99</td></tr>
+        </tbody>
+      </table>
+    </article>
+  </section>
+
+  <section id="findings" class="grid" style="margin-bottom:12px;">
+    <article class="card half">
+      <h2>Audit Scorecard</h2>
+      <div class="bar-wrap">
+        <div class="bar-row"><span>Completeness</span><div class="bar-track"><div class="bar" style="width:91%"></div></div><b>91</b></div>
+        <div class="bar-row"><span>Tracking Hygiene</span><div class="bar-track"><div class="bar" style="width:78%"></div></div><b>78</b></div>
+        <div class="bar-row"><span>Metric Integrity</span><div class="bar-track"><div class="bar" style="width:88%"></div></div><b>88</b></div>
+        <div class="bar-row"><span>Insight Readiness</span><div class="bar-track"><div class="bar" style="width:84%"></div></div><b>84</b></div>
+      </div>
+    </article>
+    <article class="card half">
+      <h2>Critical Findings</h2>
+      <ul class="list">
+        <li>12.4% sessions had missing UTM source from paid social.</li>
+        <li>Duplicate ad-set labels caused blended attribution.</li>
+        <li>One spend file had currency mismatch during import.</li>
+        <li>CRM conversion sync delay reached up to 24 hours.</li>
+      </ul>
+    </article>
+  </section>
+
+  <section id="summary" class="grid">
+    <article class="card full">
+      <h2>Executive Summary and Action Plan</h2>
+      <table class="table">
+        <thead><tr><th>Timeline</th><th>Action</th><th>Expected Impact</th></tr></thead>
+        <tbody>
+          <tr><td>30 Days</td><td>UTM governance + naming policy</td><td>Cleaner attribution and fewer tracking losses</td></tr>
+          <tr><td>60 Days</td><td>Budget shift to high-ROAS ad groups</td><td>Improve blended CPA by 8-12%</td></tr>
+          <tr><td>90 Days</td><td>Automated anomaly alerts + weekly audit routine</td><td>ROAS uplift potential 10-18%</td></tr>
+        </tbody>
+      </table>
+    </article>
+  </section>
+</div>
+<div class="watermark">ADSR Sample - View Only</div>
+<script>
+(function(){
+  document.addEventListener('contextmenu',function(e){e.preventDefault();});
+  document.addEventListener('dragstart',function(e){e.preventDefault();});
+  document.addEventListener('keydown',function(e){
+    const k=e.key.toLowerCase();
+    const ctrlLike=e.ctrlKey||e.metaKey;
+    if((ctrlLike&&['s','p','u'].includes(k))||k==='printscreen'||e.key==='F12'){
+      e.preventDefault();
+    }
+  });
+})();
+</script>
+</body>
+</html>
