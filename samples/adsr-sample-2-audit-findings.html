@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta name="robots" content="noindex,nofollow"/>
+<title>ADSR Sample 2 - Audit Findings</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&family=Sora:wght@700;800&display=swap" rel="stylesheet"/>
+<style>
+:root{--bg:#0a1220;--panel:#0f172a;--line:#1f2d44;--text:#e2e8f0;--muted:#9ca3af;--cyan:#22d3ee;--violet:#a78bfa;--green:#34d399;--yellow:#fbbf24;--red:#f87171}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Manrope',sans-serif;background:radial-gradient(circle at 90% 0%,#1e293b 0%,#0a1220 52%);color:var(--text);line-height:1.6;user-select:none}
+.wrap{max-width:1060px;margin:0 auto;padding:18px}
+.head{background:linear-gradient(135deg,rgba(34,211,238,.14),rgba(167,139,250,.14));border:1px solid rgba(148,163,184,.2);border-radius:16px;padding:16px;margin-bottom:12px}
+.badge{display:inline-block;font-size:.68rem;font-weight:800;letter-spacing:.12em;text-transform:uppercase;background:#cffafe;color:#0f172a;border-radius:999px;padding:.25rem .6rem}
+h1{font-family:'Sora',sans-serif;font-size:clamp(1.3rem,3.8vw,2rem);margin-top:.55rem}
+.sub{font-size:.9rem;color:var(--muted)}
+.grid{display:grid;grid-template-columns:repeat(12,1fr);gap:10px}
+.card{background:linear-gradient(160deg,#0f172a,#111827);border:1px solid var(--line);border-radius:14px;padding:12px}
+.half{grid-column:span 6}.full{grid-column:span 12}.third{grid-column:span 4}
+h2{font-family:'Sora',sans-serif;font-size:1rem;margin-bottom:.55rem}
+.score{font-size:1.55rem;font-family:'Sora',sans-serif;font-weight:800}.muted{font-size:.75rem;color:var(--muted)}
+.ok{color:var(--green)}.warn{color:var(--yellow)}.bad{color:var(--red)}
+.list{padding-left:1rem;display:grid;gap:.35rem}.list li{font-size:.84rem}
+.table{width:100%;border-collapse:collapse;border:1px solid var(--line);border-radius:10px;overflow:hidden}
+.table th,.table td{padding:.48rem;font-size:.76rem;border-bottom:1px solid var(--line);text-align:left}
+.table th{background:#0a1328;color:#bfdbfe}
+@media(max-width:900px){.third{grid-column:span 6}.half{grid-column:span 12}}
+@media(max-width:640px){.third,.half{grid-column:span 12}.table th,.table td{font-size:.71rem;padding:.42rem}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="head">
+    <span class="badge">View Only</span>
+    <h1>Sample 2: Audit Findings Report</h1>
+    <p class="sub">Audit-focused sample that highlights tracking quality, leakage points, and ownership matrix.</p>
+  </header>
+
+  <section class="grid" style="margin-bottom:10px">
+    <article class="card third"><h2>Completeness</h2><div class="score ok">93</div><p class="muted">Fields populated across source files</p></article>
+    <article class="card third"><h2>Tracking Hygiene</h2><div class="score warn">76</div><p class="muted">UTM and naming compliance</p></article>
+    <article class="card third"><h2>Integrity</h2><div class="score ok">89</div><p class="muted">Metric consistency after QA</p></article>
+  </section>
+
+  <section class="grid" style="margin-bottom:10px">
+    <article class="card half">
+      <h2>Critical Findings</h2>
+      <ul class="list">
+        <li class="bad">14.1% paid-social sessions missing campaign tags.</li>
+        <li class="warn">Two ad groups mapped to wrong source_medium.</li>
+        <li class="warn">Timezone offsets caused duplicate daily rows.</li>
+        <li class="ok">Revenue import logic stabilized after schema patch.</li>
+      </ul>
+    </article>
+    <article class="card half">
+      <h2>Fix Priority Matrix</h2>
+      <table class="table">
+        <thead><tr><th>Issue</th><th>Severity</th><th>Owner</th><th>SLA</th></tr></thead>
+        <tbody>
+          <tr><td>Missing UTM tags</td><td>High</td><td>Marketing Ops</td><td>48h</td></tr>
+          <tr><td>Source mapping error</td><td>High</td><td>Data Analyst</td><td>72h</td></tr>
+          <tr><td>Timezone duplicates</td><td>Medium</td><td>ETL Owner</td><td>4d</td></tr>
+          <tr><td>CRM delay checks</td><td>Medium</td><td>CRM Admin</td><td>5d</td></tr>
+        </tbody>
+      </table>
+    </article>
+  </section>
+
+  <section class="grid">
+    <article class="card full"><h2>Expected Business Impact</h2><ul class="list"><li>CPA reduction target: 7-11%</li><li>Attribution confidence increase: 18-25%</li><li>Weekly reporting preparation reduced by 2 hours</li></ul></article>
+  </section>
+</div>
+<script>
+(function(){document.addEventListener('contextmenu',e=>e.preventDefault());document.addEventListener('dragstart',e=>e.preventDefault());document.addEventListener('keydown',e=>{const k=e.key.toLowerCase();if((e.ctrlKey||e.metaKey)&&['s','p','u'].includes(k))e.preventDefault();if(e.key==='F12'||k==='printscreen')e.preventDefault();});})();
+</script>
+</body>
+</html>

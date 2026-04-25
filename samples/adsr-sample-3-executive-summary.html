@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta name="robots" content="noindex,nofollow"/>
+<title>ADSR Sample 3 - Executive Summary</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&family=Sora:wght@700;800&display=swap" rel="stylesheet"/>
+<style>
+:root{--bg:#0b1324;--panel:#111827;--line:#243244;--text:#e5e7eb;--muted:#9ca3af;--sky:#7dd3fc;--mint:#6ee7b7;--amber:#fbbf24}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Manrope',sans-serif;background:radial-gradient(circle at 50% -20%,#1e293b 0%,#0b1324 45%);color:var(--text);line-height:1.6;user-select:none}
+.wrap{max-width:1060px;margin:0 auto;padding:18px}
+.head{background:linear-gradient(135deg,rgba(125,211,252,.18),rgba(110,231,183,.14));border:1px solid rgba(148,163,184,.22);border-radius:16px;padding:16px;margin-bottom:12px}
+.badge{display:inline-block;font-size:.68rem;font-weight:800;letter-spacing:.12em;text-transform:uppercase;background:#d1fae5;color:#064e3b;border-radius:999px;padding:.25rem .6rem}
+h1{font-family:'Sora',sans-serif;font-size:clamp(1.3rem,3.8vw,2rem);margin-top:.55rem}
+.sub{font-size:.9rem;color:var(--muted)}
+.grid{display:grid;grid-template-columns:repeat(12,1fr);gap:10px}
+.card{background:linear-gradient(160deg,#111827,#0f172a);border:1px solid var(--line);border-radius:14px;padding:12px}
+.quarter{grid-column:span 3}.half{grid-column:span 6}.full{grid-column:span 12}
+.k{font-size:.72rem;color:var(--muted)}.v{font-family:'Sora',sans-serif;font-size:1.45rem;font-weight:800}
+h2{font-family:'Sora',sans-serif;font-size:1rem;margin-bottom:.55rem}
+.table{width:100%;border-collapse:collapse;border:1px solid var(--line);border-radius:10px;overflow:hidden}
+.table th,.table td{font-size:.76rem;padding:.5rem;border-bottom:1px solid var(--line);text-align:left}.table th{background:#0e162b;color:#bfdbfe}
+.list{padding-left:1rem;display:grid;gap:.34rem}.list li{font-size:.84rem}
+.callout{font-size:.86rem;color:#fde68a;background:rgba(251,191,36,.09);border:1px solid rgba(251,191,36,.35);border-radius:10px;padding:.6rem .7rem}
+@media(max-width:900px){.quarter{grid-column:span 6}.half{grid-column:span 12}}
+@media(max-width:640px){.quarter,.half{grid-column:span 12}.table th,.table td{font-size:.71rem;padding:.42rem}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="head">
+    <span class="badge">View Only</span>
+    <h1>Sample 3: Executive Summary Deck View</h1>
+    <p class="sub">Leadership-facing summary emphasizing decisions, budget shifts, and 30/60/90 roadmap.</p>
+  </header>
+
+  <section class="grid" style="margin-bottom:10px">
+    <article class="card quarter"><div class="k">Monthly Spend</div><div class="v">INR 3.05L</div></article>
+    <article class="card quarter"><div class="k">Revenue Attributed</div><div class="v">INR 15.7L</div></article>
+    <article class="card quarter"><div class="k">Blended ROAS</div><div class="v">5.1x</div></article>
+    <article class="card quarter"><div class="k">Leads Qualified</div><div class="v">612</div></article>
+  </section>
+
+  <section class="grid" style="margin-bottom:10px">
+    <article class="card half">
+      <h2>Top Insights</h2>
+      <ul class="list">
+        <li>Retargeting produced best incremental returns.</li>
+        <li>Brand search maintained stable high-intent conversion quality.</li>
+        <li>Generic search spend efficiency improved after negative keyword expansion.</li>
+      </ul>
+    </article>
+    <article class="card half">
+      <h2>Decision Requests</h2>
+      <ul class="list">
+        <li>Approve 12% budget shift toward high-ROAS campaigns.</li>
+        <li>Approve weekly audit checkpoint with stakeholders.</li>
+        <li>Approve data governance checklist before campaign launch.</li>
+      </ul>
+    </article>
+  </section>
+
+  <section class="grid">
+    <article class="card full">
+      <h2>30/60/90 Roadmap</h2>
+      <table class="table">
+        <thead><tr><th>Window</th><th>Focus</th><th>Owner</th><th>Expected Result</th></tr></thead>
+        <tbody>
+          <tr><td>30 Days</td><td>Tag governance and naming SOP</td><td>Marketing Ops</td><td>Reduce attribution gaps</td></tr>
+          <tr><td>60 Days</td><td>Budget realignment by ROAS cluster</td><td>Media Team</td><td>Improve blended CPA</td></tr>
+          <tr><td>90 Days</td><td>Automation for anomaly alerts</td><td>Data Team</td><td>Faster decision cycles</td></tr>
+        </tbody>
+      </table>
+      <p class="callout" style="margin-top:.7rem;">This is a visual-only client preview. Export actions are intentionally restricted.</p>
+    </article>
+  </section>
+</div>
+<script>
+(function(){document.addEventListener('contextmenu',e=>e.preventDefault());document.addEventListener('dragstart',e=>e.preventDefault());document.addEventListener('keydown',e=>{const k=e.key.toLowerCase();if((e.ctrlKey||e.metaKey)&&['s','p','u'].includes(k))e.preventDefault();if(e.key==='F12'||k==='printscreen')e.preventDefault();});})();
+</script>
+</body>
+</html>
