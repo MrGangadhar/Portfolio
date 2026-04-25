@@ -1,0 +1,928 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Gangadhara B | Full-Stack Developer</title>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Sora:wght@600;700;800&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+<style>
+:root{
+  --font-body:'Manrope',sans-serif;
+  --font-display:'Sora',sans-serif;
+  --white:#ffffff;--off:#f8f9ff;--ink:#0b0c1a;--muted:#64748b;
+  --blue:#2563eb;--cyan:#0891b2;--violet:#7c3aed;--pink:#db2777;
+  --green:#059669;--orange:#d97706;--teal:#0d9488;
+  --g1:linear-gradient(135deg,#2563eb,#7c3aed);
+  --g2:linear-gradient(135deg,#0891b2,#059669);
+  --g3:linear-gradient(135deg,#db2777,#d97706);
+  --g4:linear-gradient(135deg,#7c3aed,#db2777);
+  --shadow-sm:0 2px 12px rgba(37,99,235,.07);
+  --shadow:0 6px 32px rgba(37,99,235,.12);
+  --shadow-lg:0 16px 56px rgba(37,99,235,.16);
+  --r:20px;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{
+  font-family:var(--font-body);
+  background:linear-gradient(120deg,#f8f9ff 0%,#f3e8ff 100%);
+  color:var(--ink);
+  overflow-x:hidden;
+  line-height:1.6;
+}
+.logo,.hero-name,.s-title,.kpi-v,.h-stat .num,.modal-box h2,.fb-form h3,.ct-form h3{font-family:var(--font-display);}
+a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline:3px solid rgba(37,99,235,.4);outline-offset:2px;}
+.skip-link{position:fixed;left:10px;top:-44px;background:var(--ink);color:#fff;padding:.45rem .75rem;border-radius:10px;z-index:10001;text-decoration:none;font-size:.8rem;transition:.2s;}
+.skip-link:focus{top:10px;}
+
+.intro-overlay{position:fixed;inset:0;z-index:12000;display:grid;place-items:center;background:#020617;overflow:hidden;}
+.intro-overlay.hide{opacity:0;pointer-events:none;transition:opacity .5s ease;}
+.intro-video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.55;}
+.intro-sheen{position:absolute;inset:0;background:radial-gradient(circle at 20% 20%,rgba(37,99,235,.35),transparent 40%),radial-gradient(circle at 80% 80%,rgba(8,145,178,.3),transparent 45%),linear-gradient(135deg,rgba(2,6,23,.78),rgba(15,23,42,.66));}
+.intro-content{position:relative;text-align:center;color:#f8fafc;max-width:760px;padding:0 1rem;animation:fadeIn .9s ease both;}
+.intro-kicker{font-size:.73rem;letter-spacing:.22em;text-transform:uppercase;font-weight:800;opacity:.9;margin-bottom:.7rem;}
+.intro-title{font-family:var(--font-display);font-size:clamp(2rem,6.4vw,4.2rem);font-weight:800;line-height:1.05;letter-spacing:-1px;margin-bottom:.65rem;}
+.intro-title span{background:linear-gradient(135deg,#93c5fd,#e9d5ff,#67e8f9);background-clip:text;-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
+.intro-sub{font-size:.92rem;opacity:.9;max-width:560px;margin:0 auto 1.25rem;}
+.intro-actions{display:flex;justify-content:center;gap:.7rem;flex-wrap:wrap;}
+.intro-btn{border:none;border-radius:999px;padding:.62rem 1.05rem;font-weight:800;font-size:.8rem;cursor:pointer;transition:.2s;}
+.intro-btn.enter{background:linear-gradient(135deg,#2563eb,#7c3aed);color:#fff;}
+.intro-btn.skip{background:rgba(255,255,255,.16);color:#f8fafc;border:1px solid rgba(255,255,255,.3);}
+.intro-btn:hover{transform:translateY(-2px);}
+
+/* Geometric BG */
+#geo{position:fixed;top:0;left:0;width:100%;height:100%;z-index:-1;pointer-events:none;opacity:.4;}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:999;background:linear-gradient(90deg,rgba(37,99,235,0.92),rgba(124,58,237,0.92));backdrop-filter:blur(20px);border-bottom:1px solid rgba(37,99,235,.13);padding:0 5%;}
+.nav-inner{max-width:1280px;margin:auto;display:flex;align-items:center;justify-content:space-between;height:66px;}
+.logo{font-weight:800;font-size:1.5rem;background:var(--g1);background-clip:text;-webkit-background-clip:text;-webkit-text-fill-color:transparent;letter-spacing:-1px;}
+.nav-links{display:flex;gap:1.8rem;list-style:none;}
+.nav-links a{text-decoration:none;color:#e0e7ff;font-size:.85rem;font-weight:500;transition:.2s;position:relative;}
+.nav-links a.active{color:#fff;}
+.nav-links a.active::after{transform:scaleX(1);}
+.nav-links a::after{content:'';position:absolute;bottom:-4px;left:0;right:0;height:2px;background:var(--g1);border-radius:2px;transform:scaleX(0);transition:.2s;}
+.nav-links a:hover{color:#fff;}
+.nav-links a:hover::after{transform:scaleX(1);}
+.nav-cta{background:var(--g1);color:#fff!important;padding:.42rem 1.2rem;border-radius:50px;font-size:.83rem;font-weight:700;text-decoration:none;transition:.2s;box-shadow:0 2px 12px rgba(37,99,235,.13);}
+.nav-cta:hover{opacity:.92;box-shadow:0 6px 24px rgba(124,58,237,.18);}
+.nav-cta::after{display:none!important;}
+.hamburger{display:none;font-size:1.3rem;cursor:pointer;color:#fff;background:none;border:none;}
+
+/* HERO */
+#home{min-height:100vh;display:flex;align-items:center;padding:100px 5% 60px;max-width:1280px;margin:0 auto;}
+.hero-wrap{display:grid;grid-template-columns:1.1fr 1fr;gap:4rem;align-items:center;width:100%;}
+.hero-badge{display:inline-flex;align-items:center;gap:.6rem;background:linear-gradient(135deg,rgba(37,99,235,.08),rgba(124,58,237,.08));border:1.5px solid rgba(37,99,235,.2);border-radius:50px;padding:.4rem 1.1rem;font-size:.76rem;font-weight:700;color:var(--violet);margin-bottom:1.4rem;letter-spacing:.06em;text-transform:uppercase;}
+.dot{width:8px;height:8px;background:#10b981;border-radius:50%;animation:breathe 2s infinite;}
+@keyframes breathe{0%,100%{box-shadow:0 0 0 0 rgba(16,185,129,.4);}50%{box-shadow:0 0 0 6px rgba(16,185,129,0);}}
+.hero-name{font-size:clamp(2.2rem,5vw,3.8rem);font-weight:900;line-height:1.05;letter-spacing:-2px;margin-bottom:1rem;}
+.hero-name .g1{background:var(--g1);background-clip:text;-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
+.hero-name .g2{background:var(--g2);background-clip:text;-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
+.hero-sub{font-size:.97rem;color:var(--muted);line-height:1.75;margin-bottom:2rem;max-width:500px;}
+.hero-sub strong{color:var(--ink);font-weight:600;}
+.hero-btns{display:flex;gap:1rem;flex-wrap:wrap;margin-bottom:2.5rem;}
+.btn-p{background:var(--g1);color:#fff;padding:.72rem 1.9rem;border-radius:50px;text-decoration:none;font-weight:700;font-size:.9rem;transition:.25s;display:inline-flex;align-items:center;gap:.5rem;}
+.btn-p:hover{transform:translateY(-3px);box-shadow:0 10px 32px rgba(37,99,235,.35);}
+.btn-o{border:2px solid var(--blue);color:var(--blue);padding:.72rem 1.9rem;border-radius:50px;text-decoration:none;font-weight:700;font-size:.9rem;transition:.25s;display:inline-flex;align-items:center;gap:.5rem;}
+.btn-o:hover{background:var(--blue);color:#fff;transform:translateY(-3px);}
+.hero-stats{display:flex;gap:2rem;}
+.h-stat .num{font-size:1.8rem;font-weight:900;background:var(--g1);background-clip:text;-webkit-background-clip:text;-webkit-text-fill-color:transparent;line-height:1;}
+.h-stat .num::after{content:'+';font-size:.72em;margin-left:1px;}
+.h-stat .lbl{font-size:.7rem;color:var(--muted);font-weight:500;letter-spacing:.05em;text-transform:uppercase;}
+.h-div{width:1px;background:rgba(37,99,235,.15);}
+
+/* Hero right */
+.hero-right{position:relative;height:400px;}
+.fc{position:absolute;background:var(--white);border:1px solid rgba(37,99,235,.12);border-radius:var(--r);padding:1rem 1.3rem;box-shadow:var(--shadow);display:flex;align-items:center;gap:.9rem;animation:flt 4s ease-in-out infinite;}
+.fc:nth-child(2){animation-delay:-.8s;}.fc:nth-child(3){animation-delay:-1.6s;}.fc:nth-child(4){animation-delay:-2.4s;}
+@keyframes flt{0%,100%{transform:translateY(0);}50%{transform:translateY(-10px);}}
+.fc1{top:0;left:0;right:0;}.fc2{top:110px;right:0;width:76%;}.fc3{top:208px;left:0;width:76%;}.fc4{top:316px;right:16px;}
+.fc-ico{width:44px;height:44px;border-radius:13px;display:flex;align-items:center;justify-content:center;font-size:1.2rem;flex-shrink:0;}
+.fc-t h4{font-size:.86rem;font-weight:700;margin-bottom:.12rem;}.fc-t p{font-size:.74rem;color:var(--muted);}
+
+/* SECTIONS */
+.section{padding:88px 5%;}
+.si{max-width:1280px;margin:0 auto;}
+.alt{background:var(--off);}
+.s-lbl{font-size:.7rem;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:var(--blue);margin-bottom:.5rem;display:flex;align-items:center;gap:.5rem;}
+.s-lbl::before{content:'';width:22px;height:2px;background:var(--g1);border-radius:2px;}
+.s-title{font-size:clamp(1.7rem,4vw,2.6rem);font-weight:900;letter-spacing:-1px;margin-bottom:.5rem;line-height:1.1;}
+.s-sub{color:var(--muted);font-size:.93rem;margin-bottom:2.5rem;max-width:550px;}
+
+/* KPI */
+.kpi-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:1rem;margin-bottom:2.5rem;}
+.kpi-card{background:var(--white);border-radius:var(--r);padding:1.3rem 1rem;border:1px solid rgba(0,0,0,.06);box-shadow:var(--shadow-sm);text-align:center;position:relative;overflow:hidden;transition:.3s;}
+.kpi-card:hover{transform:translateY(-5px);box-shadow:var(--shadow);}
+.kpi-card::after{content:'';position:absolute;bottom:0;left:0;right:0;height:3px;}
+.kpi-card.c1::after{background:var(--g1);}.kpi-card.c2::after{background:var(--g2);}
+.kpi-card.c3::after{background:var(--g3);}.kpi-card.c4::after{background:linear-gradient(135deg,#059669,#0891b2);}
+.kpi-card.c5::after{background:linear-gradient(135deg,#d97706,#dc2626);}.kpi-card.c6::after{background:var(--g4);}
+.kpi-em{font-size:1.5rem;margin-bottom:.5rem;}
+.kpi-v{font-size:1.9rem;font-weight:900;letter-spacing:-1px;line-height:1;}
+.kpi-l{font-size:.7rem;color:var(--muted);font-weight:500;margin-top:.25rem;}
+.kpi-b{font-size:.66rem;font-weight:700;padding:.18rem .55rem;border-radius:50px;margin-top:.4rem;display:inline-block;}
+.up{background:#ecfdf5;color:#059669;}.stat{background:#eff6ff;color:var(--blue);}
+
+/* Skill bars */
+.skills-wrap{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:2.5rem;}
+.sb{background:var(--white);border-radius:var(--r);padding:1.2rem 1.4rem;border:1px solid rgba(0,0,0,.06);box-shadow:var(--shadow-sm);}
+.sb-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:.65rem;}
+.sb-name{font-weight:700;font-size:.88rem;display:flex;align-items:center;gap:.45rem;}
+.sb-pct{font-size:.82rem;font-weight:800;color:var(--blue);}
+.bar-track{background:#f1f5f9;border-radius:50px;height:7px;overflow:hidden;}
+.bar-fill{height:100%;border-radius:50px;width:0;transition:width 1.6s cubic-bezier(.22,1,.36,1);}
+
+/* Tech chips */
+.tc-title{font-size:1rem;font-weight:800;margin:.5rem 0 1rem;}
+.tech-grid{display:flex;flex-wrap:wrap;gap:.6rem;}
+.chip{display:flex;align-items:center;gap:.45rem;background:var(--white);border:1.5px solid rgba(0,0,0,.08);border-radius:50px;padding:.4rem .9rem;font-size:.8rem;font-weight:600;transition:.25s;cursor:default;box-shadow:var(--shadow-sm);}
+.chip:hover{transform:translateY(-3px);box-shadow:var(--shadow);border-color:var(--blue);color:var(--blue);}
+.chip i,.chip svg{font-size:.95rem;width:16px;text-align:center;flex-shrink:0;}
+
+/* PROJECTS */
+.proj-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:1.4rem;}
+.proj-card{background:var(--white);border:1px solid rgba(0,0,0,.07);border-radius:var(--r);overflow:hidden;transition:.3s;}
+.proj-card:hover{transform:translateY(-7px);box-shadow:var(--shadow-lg);}
+.proj-banner{height:160px;display:flex;align-items:center;justify-content:center;font-size:3.8rem;position:relative;}
+.live-badge{position:absolute;top:12px;right:12px;background:linear-gradient(135deg,#059669,#0891b2);color:#fff;font-size:.68rem;font-weight:800;padding:.28rem .7rem;border-radius:50px;display:flex;align-items:center;gap:.3rem;letter-spacing:.04em;}
+.blink{width:7px;height:7px;background:#fff;border-radius:50%;animation:blink 1.2s infinite;}
+@keyframes blink{0%,100%{opacity:1;}50%{opacity:.2;}}
+.proj-body{padding:1.4rem;}
+.proj-body h3{font-size:1.05rem;font-weight:800;margin-bottom:.45rem;letter-spacing:-.3px;}
+.proj-body p{color:var(--muted);font-size:.84rem;line-height:1.65;margin-bottom:.9rem;}
+.proj-tags{display:flex;flex-wrap:wrap;gap:.35rem;margin-bottom:1.1rem;}
+.tag{border-radius:50px;padding:.2rem .65rem;font-size:.7rem;font-weight:700;}
+.tag.bl{background:#eff6ff;color:var(--blue);}.tag.gr{background:#ecfdf5;color:var(--green);}
+.tag.vi{background:#f5f3ff;color:var(--violet);}.tag.pk{background:#fdf2f8;color:var(--pink);}
+.tag.or{background:#fffbeb;color:var(--orange);}
+.proj-links{display:flex;gap:.8rem;}
+.proj-links a{font-size:.8rem;font-weight:700;color:var(--blue);text-decoration:none;display:inline-flex;align-items:center;gap:.3rem;padding:.38rem .85rem;border-radius:50px;border:1.5px solid rgba(37,99,235,.25);transition:.2s;}
+.proj-links a:hover{background:var(--blue);color:#fff;border-color:var(--blue);}
+.proj-links a.dm{background:var(--g1);color:#fff;border:none;}
+.proj-links a.dm:hover{opacity:.85;}
+
+/* Timeline */
+.timeline{padding-left:2.5rem;position:relative;}
+.timeline::before{content:'';position:absolute;left:.9rem;top:6px;bottom:6px;width:2px;background:linear-gradient(to bottom,var(--blue),var(--violet),#db2777);}
+.tl-item{position:relative;margin-bottom:2.2rem;}
+.tl-dot{position:absolute;left:-2.5rem;top:.4rem;width:15px;height:15px;border-radius:50%;background:var(--white);border:3px solid var(--blue);box-shadow:0 0 0 3px rgba(37,99,235,.15);}
+.tl-dot.v{border-color:var(--violet);box-shadow:0 0 0 3px rgba(124,58,237,.15);}
+.tl-dot.g{border-color:var(--green);box-shadow:0 0 0 3px rgba(5,150,105,.15);}
+.tl-card{background:var(--white);border:1px solid rgba(0,0,0,.07);border-radius:var(--r);padding:1.4rem;box-shadow:var(--shadow-sm);}
+.tl-card h3{font-size:1.02rem;font-weight:800;letter-spacing:-.3px;}
+.tl-co{font-weight:700;font-size:.86rem;margin:.2rem 0;display:flex;align-items:center;gap:.4rem;}
+.tl-per{color:var(--muted);font-size:.76rem;margin-bottom:.8rem;font-weight:500;}
+.tl-card ul{padding-left:1rem;}
+.tl-card ul li{font-size:.85rem;color:var(--muted);margin-bottom:.35rem;line-height:1.6;}
+
+/* AI Tools */
+.ai-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:1.1rem;}
+.ai-card{background:var(--white);border:1px solid rgba(0,0,0,.07);border-radius:var(--r);padding:1.3rem;display:flex;align-items:flex-start;gap:.9rem;transition:.3s;}
+.ai-card:hover{transform:translateY(-4px);box-shadow:var(--shadow);}
+.ai-ico{width:44px;height:44px;border-radius:13px;display:flex;align-items:center;justify-content:center;font-size:1.2rem;flex-shrink:0;}
+.ai-card h4{font-size:.88rem;font-weight:800;margin-bottom:.22rem;}
+.ai-card p{font-size:.76rem;color:var(--muted);line-height:1.55;}
+
+/* Blog */
+.blog-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(290px,1fr));gap:1.3rem;}
+.blog-card{background:var(--white);border:1px solid rgba(0,0,0,.07);border-radius:var(--r);overflow:hidden;transition:.3s;cursor:pointer;}
+.blog-card:hover{transform:translateY(-6px);box-shadow:var(--shadow-lg);}
+.blog-thumb{height:125px;display:flex;align-items:center;justify-content:center;font-size:2.8rem;}
+.blog-body{padding:1.2rem;}
+.blog-meta{display:flex;align-items:center;gap:.45rem;font-size:.73rem;color:var(--muted);margin-bottom:.55rem;flex-wrap:wrap;}
+.blog-cat{background:var(--g1);color:#fff;border-radius:50px;padding:.15rem .6rem;font-size:.68rem;font-weight:800;letter-spacing:.04em;}
+.blog-body h3{font-size:.94rem;font-weight:800;margin-bottom:.45rem;line-height:1.4;letter-spacing:-.2px;}
+.blog-body p{font-size:.8rem;color:var(--muted);line-height:1.6;margin-bottom:.9rem;}
+.read-more{font-size:.78rem;font-weight:800;color:var(--blue);display:inline-flex;align-items:center;gap:.3rem;}
+
+/* Feedback */
+.fb-wrap{background:linear-gradient(135deg,rgba(37,99,235,.04),rgba(124,58,237,.04));border-radius:var(--r);padding:2.2rem;}
+.fb-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(270px,1fr));gap:1.1rem;margin-bottom:2rem;}
+.fb-card{background:var(--white);border-radius:var(--r);padding:1.3rem;border:1px solid rgba(0,0,0,.06);box-shadow:var(--shadow-sm);transition:.3s;}
+.fb-card:hover{transform:translateY(-3px);box-shadow:var(--shadow);}
+.fb-stars{color:#f59e0b;font-size:.88rem;margin-bottom:.55rem;}
+.fb-text{font-size:.86rem;color:var(--ink);line-height:1.65;margin-bottom:.9rem;font-style:italic;}
+.fb-author{display:flex;align-items:center;gap:.75rem;}
+.fb-av{width:38px;height:38px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1rem;font-weight:800;color:#fff;flex-shrink:0;}
+.fb-author-info h4{font-size:.83rem;font-weight:800;}
+.fb-author-info p{font-size:.72rem;color:var(--muted);}
+.fb-form{background:var(--white);border-radius:var(--r);padding:1.8rem;border:1px solid rgba(37,99,235,.14);box-shadow:var(--shadow);}
+.fb-form h3{font-size:1.15rem;font-weight:800;margin-bottom:.4rem;}
+.fb-form .desc{color:var(--muted);font-size:.84rem;margin-bottom:1.2rem;}
+.star-row{display:flex;gap:.25rem;margin-bottom:1.1rem;flex-direction:row-reverse;justify-content:flex-end;}
+.star-row input{display:none;}
+.star-row label{font-size:1.5rem;cursor:pointer;color:#d1d5db;transition:.15s;}
+.star-row label:hover,.star-row label:hover~label,.star-row input:checked~label{color:#f59e0b;}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:.9rem;}
+.fg{margin-bottom:.9rem;}
+.fg label{display:block;font-size:.8rem;font-weight:700;margin-bottom:.35rem;}
+.fg input,.fg textarea,.fg select{width:100%;border:1.5px solid rgba(0,0,0,.1);border-radius:10px;padding:.62rem 1rem;font-family:'Rubik',sans-serif;font-size:.86rem;outline:none;transition:.2s;background:var(--white);color:var(--ink);}
+.fg input:focus,.fg textarea:focus,.fg select:focus{border-color:var(--blue);box-shadow:0 0 0 3px rgba(37,99,235,.1);}
+.fg textarea{resize:vertical;min-height:95px;}
+.btn-sub{background:var(--g1);color:#fff;border:none;padding:.72rem 1.8rem;border-radius:50px;font-family:var(--font-body);font-size:.9rem;font-weight:700;cursor:pointer;transition:.2s;display:inline-flex;align-items:center;gap:.5rem;}
+.btn-sub:hover{opacity:.88;transform:translateY(-2px);}
+.form-ok{display:none;background:#ecfdf5;border:1px solid #a7f3d0;border-radius:12px;padding:.9rem;text-align:center;color:var(--green);font-weight:700;margin-top:.9rem;font-size:.88rem;}
+.toast{position:fixed;right:18px;bottom:18px;background:var(--ink);color:#fff;padding:.68rem .9rem;border-radius:12px;box-shadow:var(--shadow-lg);font-size:.82rem;z-index:10010;opacity:0;transform:translateY(10px);transition:.2s;pointer-events:none;}
+.toast.show{opacity:1;transform:translateY(0);}
+
+.quick-actions{position:fixed;right:18px;bottom:72px;display:flex;flex-direction:column;gap:.55rem;z-index:10009;}
+.quick-btn{display:inline-flex;align-items:center;gap:.5rem;padding:.62rem .85rem;border-radius:999px;background:var(--white);color:var(--ink);text-decoration:none;font-size:.78rem;font-weight:800;border:1px solid rgba(0,0,0,.08);box-shadow:var(--shadow);transition:.2s;}
+.quick-btn:hover{transform:translateY(-2px);}
+.quick-btn.whatsapp{background:linear-gradient(135deg,#16a34a,#10b981);color:#fff;border:none;}
+.quick-btn.call{background:linear-gradient(135deg,#2563eb,#0891b2);color:#fff;border:none;}
+
+.reveal-rise{opacity:0;transform:translate3d(0,22px,0) scale(.985);transition:opacity .65s ease,transform .65s cubic-bezier(.22,1,.36,1);}
+.reveal-rise.in{opacity:1;transform:translate3d(0,0,0) scale(1);}
+
+/* Contact */
+.ct-grid{display:grid;grid-template-columns:1fr 1.2fr;gap:3rem;align-items:start;}
+.ci-item{display:flex;align-items:center;gap:.9rem;margin-bottom:1.2rem;}
+.ci-ico{width:46px;height:46px;border-radius:13px;display:flex;align-items:center;justify-content:center;font-size:.95rem;flex-shrink:0;}
+.ci-item h4{font-size:.78rem;color:var(--muted);font-weight:600;margin-bottom:.12rem;}
+.ci-item a,.ci-item span{font-size:.9rem;font-weight:700;color:var(--ink);text-decoration:none;}
+.ci-item a:hover{color:var(--blue);}
+.ct-form{background:var(--white);border:1px solid rgba(37,99,235,.12);border-radius:var(--r);padding:2rem;box-shadow:var(--shadow);}
+.ct-form h3{font-size:1.15rem;font-weight:800;margin-bottom:1.4rem;}
+
+/* Footer */
+footer{background:var(--ink);color:#fff;padding:3.5rem 5% 1.8rem;}
+.fi{max-width:1280px;margin:auto;}
+.ft{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:2rem;margin-bottom:2rem;}
+.fb-brand .logo{display:block;margin-bottom:.7rem;}
+.fb-brand p{color:#94a3b8;font-size:.83rem;line-height:1.7;}
+.f-col h4{font-weight:800;font-size:.88rem;margin-bottom:.9rem;color:#e2e8f0;}
+.f-col ul{list-style:none;}
+.f-col ul li{margin-bottom:.48rem;}
+.f-col ul li a{color:#94a3b8;text-decoration:none;font-size:.83rem;transition:.2s;}
+.f-col ul li a:hover{color:#fff;}
+.fb{border-top:1px solid #1e293b;padding-top:1.4rem;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem;}
+.fb p{color:#64748b;font-size:.78rem;}
+.socials{display:flex;gap:.6rem;}
+.socials a{width:36px;height:36px;border-radius:50%;background:#1e293b;display:flex;align-items:center;justify-content:center;color:#94a3b8;font-size:.88rem;transition:.2s;text-decoration:none;}
+.socials a:hover{background:var(--blue);color:#fff;}
+
+/* Modal */
+.modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,.52);z-index:9000;display:flex;align-items:center;justify-content:center;padding:1rem;opacity:0;pointer-events:none;transition:.3s;backdrop-filter:blur(4px);}
+.modal-overlay.open{opacity:1;pointer-events:all;}
+.modal-box{background:var(--white);border-radius:var(--r);max-width:720px;width:100%;max-height:88vh;overflow-y:auto;padding:2.3rem;position:relative;transform:translateY(28px);transition:.3s;}
+.modal-overlay.open .modal-box{transform:translateY(0);}
+.modal-close{position:absolute;top:.9rem;right:.9rem;background:var(--off);border:none;width:36px;height:36px;border-radius:50%;cursor:pointer;font-size:.95rem;display:flex;align-items:center;justify-content:center;color:var(--muted);transition:.2s;}
+.modal-close:hover{background:var(--blue);color:#fff;}
+.modal-box h2{font-size:1.5rem;font-weight:900;margin-bottom:.4rem;letter-spacing:-.5px;}
+.modal-meta{color:var(--muted);font-size:.8rem;margin-bottom:1.4rem;}
+.modal-content p{line-height:1.8;color:#374151;margin-bottom:.9rem;font-size:.91rem;}
+.modal-content h3{font-weight:800;margin:1.3rem 0 .45rem;font-size:1rem;}
+.modal-content ul{padding-left:1.1rem;margin-bottom:.9rem;}
+.modal-content ul li{line-height:1.7;color:#4b5563;font-size:.88rem;}
+.modal-content code{background:#f1f5f9;padding:.13rem .38rem;border-radius:6px;font-size:.83rem;color:var(--violet);}
+
+/* Animations */
+.fade-up{opacity:0;transform:translateY(26px);transition:opacity .6s ease,transform .6s ease;}
+.fade-up.in{opacity:1;transform:translateY(0);}
+@keyframes fadeIn{from{opacity:0;transform:translateY(18px);}to{opacity:1;transform:translateY(0);}}
+
+/* Responsive */
+@media(max-width:1100px){.kpi-grid{grid-template-columns:repeat(3,1fr);}.ft{grid-template-columns:1fr 1fr;}}
+@media(max-width:900px){
+  .hero-wrap{grid-template-columns:1fr;text-align:center;}
+  .hero-sub{max-width:100%;}.hero-btns{justify-content:center;}.hero-stats{justify-content:center;flex-wrap:wrap;gap:1rem;}.hero-right{display:none;}
+  .h-div{display:none;}
+  .skills-wrap{grid-template-columns:1fr;}.ct-grid{grid-template-columns:1fr;}
+  .nav-links{display:none;flex-direction:column;position:absolute;top:66px;left:0;right:0;background:rgba(255,255,255,.97);padding:1.2rem 5%;border-bottom:1px solid rgba(0,0,0,.08);gap:1rem;z-index:998;}
+  .nav-links a{color:#1e293b;}
+  .nav-cta{display:none;}
+  .nav-links.open{display:flex;}.hamburger{display:block;}.form-row{grid-template-columns:1fr;}
+}
+@media(max-width:640px){
+  .kpi-grid{grid-template-columns:repeat(2,1fr);}
+  .proj-grid,.blog-grid,.ai-grid,.fb-grid{grid-template-columns:1fr;}
+  .section{padding:60px 5%;}.ft{grid-template-columns:1fr;}
+  .quick-actions{right:12px;bottom:78px;}
+  .quick-btn{padding:.58rem .78rem;font-size:.75rem;}
+  .intro-video{opacity:.48;}
+}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;scroll-behavior:auto!important;}}
+</style>
+</head>
+<body>
+
+
+<!-- SVG Background Pattern (subtle, modern, layered behind canvas) -->
+<div style="position:fixed;z-index:-2;inset:0;pointer-events:none;opacity:.22;">
+  <svg width="100%" height="100%" viewBox="0 0 1920 1080" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:100vw;height:100vh;display:block;">
+    <defs>
+      <linearGradient id="bg1" x1="0" y1="0" x2="1920" y2="1080" gradientUnits="userSpaceOnUse">
+        <stop stop-color="#2563eb"/>
+        <stop offset="1" stop-color="#7c3aed"/>
+      </linearGradient>
+      <linearGradient id="bg2" x1="1920" y1="0" x2="0" y2="1080" gradientUnits="userSpaceOnUse">
+        <stop stop-color="#0891b2"/>
+        <stop offset="1" stop-color="#db2777"/>
+      </linearGradient>
+    </defs>
+    <circle cx="400" cy="200" r="180" fill="url(#bg1)" opacity=".18"/>
+    <rect x="1200" y="700" width="340" height="340" rx="90" fill="url(#bg2)" opacity=".13"/>
+    <ellipse cx="1600" cy="300" rx="180" ry="90" fill="#db2777" opacity=".09"/>
+    <polygon points="900,900 1100,1050 700,1050" fill="#0891b2" opacity=".08"/>
+    <circle cx="1550" cy="900" r="120" fill="#7c3aed" opacity=".10"/>
+    <rect x="200" y="800" width="220" height="120" rx="40" fill="#059669" opacity=".09"/>
+  </svg>
+</div>
+<canvas id="geo"></canvas>
+<div class="intro-overlay" id="introOverlay" aria-label="Portfolio intro animation">
+  <video class="intro-video" autoplay muted loop playsinline preload="metadata" poster="" id="introVideo">
+    <source src="https://videos.pexels.com/video-files/3135808/3135808-hd_1920_1080_25fps.mp4" type="video/mp4"/>
+  </video>
+  <div class="intro-sheen"></div>
+  <div class="intro-content">
+    <p class="intro-kicker">Developer Portfolio</p>
+    <h1 class="intro-title">Crafting <span>Modern Web Experiences</span></h1>
+    <p class="intro-sub">Full-stack development, AI-assisted workflows, and production-ready solutions from Bengaluru.</p>
+    <div class="intro-actions">
+      <button class="intro-btn enter" id="enterSiteBtn">Enter Portfolio</button>
+      <button class="intro-btn skip" id="skipIntroBtn">Skip Intro</button>
+    </div>
+  </div>
+</div>
+<a class="skip-link" href="#home">Skip to content</a>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-inner">
+    <div class="logo">GB.</div>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#home">Home</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#experience">Experience</a></li>
+      <li><a href="#aitools">AI Tools</a></li>
+      <li><a href="#blog">Blog</a></li>
+      <li><a href="#feedback">Feedback</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <a href="#contact" class="nav-cta">Hire Me →</a>
+    <button class="hamburger" aria-expanded="false" aria-label="Toggle navigation menu" onclick="toggleNav()"><i class="fas fa-bars"></i></button>
+  </div>
+</nav>
+
+<!-- HERO -->
+<main id="mainContent">
+<section id="home">
+  <div class="hero-wrap">
+    <div class="hero-left fade-up">
+      <div class="hero-badge"><span class="dot"></span> Available for Work</div>
+      <h1 class="hero-name">
+        Hi, I'm<br>
+        <span class="g1">Gangadhara</span><br>
+        <span class="g2">Full-Stack Dev</span>
+      </h1>
+      <p class="hero-sub"><strong>BCA Graduate 2025</strong> · MERN Stack · AI-Powered Builder<br>Currently at <strong>WovvTech, Bengaluru</strong>. I craft scalable web apps fusing modern frameworks with intelligent automation.</p>
+      <div class="hero-btns">
+        <a href="#projects" class="btn-p"><i class="fas fa-rocket"></i> View Projects</a>
+        <a href="#contact" class="btn-o"><i class="fas fa-envelope"></i> Hire Me</a>
+      </div>
+      <div class="hero-stats light-box">
+        <div class="h-stat"><div class="num" data-count="3">0</div><div class="lbl">Years Learning</div></div>
+        <div class="h-div"></div>
+        <div class="h-stat"><div class="num" data-count="5">0</div><div class="lbl">Tech Stacks</div></div>
+        <div class="h-div"></div>
+        <div class="h-stat"><div class="num" data-count="8">0</div><div class="lbl">AI Tools</div></div>
+        <div class="h-div"></div>
+        <div class="h-stat"><div class="num" data-count="5">0</div><div class="lbl">Projects</div></div>
+      </div>
+    </div>
+    <div class="hero-right fade-up">
+      <div class="fc fc1"><div class="fc-ico" style="background:linear-gradient(135deg,#eff6ff,#dbeafe);color:var(--blue)"><i class="fas fa-code"></i></div><div class="fc-t"><h4>Full-Stack MERN Developer</h4><p>React · Node · MongoDB · Express</p></div></div>
+      <div class="fc fc2"><div class="fc-ico" style="background:linear-gradient(135deg,#ecfdf5,#d1fae5);color:var(--green)"><i class="fas fa-robot"></i></div><div class="fc-t"><h4>AI Tools Expert</h4><p>8+ tools — Copilot, Claude, GPT-4o</p></div></div>
+      <div class="fc fc3"><div class="fc-ico" style="background:linear-gradient(135deg,#f5f3ff,#ede9fe);color:var(--violet)"><i class="fab fa-wordpress"></i></div><div class="fc-t"><h4>WordPress & CMS</h4><p>Elementor · Wix Studio · Custom themes</p></div></div>
+      <div class="fc fc4"><div class="fc-ico" style="background:linear-gradient(135deg,#fff7ed,#ffedd5);color:var(--orange)"><i class="fas fa-briefcase"></i></div><div class="fc-t"><h4>Open to Freelance</h4><p>Fast · Quality · Responsive</p></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills" class="section alt">
+  <div class="si">
+    <p class="s-lbl fade-up">📊 Dashboard</p>
+    <h2 class="s-title fade-up">Skills & KPIs</h2>
+    <p class="s-sub fade-up">Real metrics from my development journey — tracked honestly.</p>
+    <div class="kpi-grid fade-up">
+      <div class="kpi-card c1"><div class="kpi-em">💻</div><div class="kpi-v" data-count="3">0</div><div class="kpi-l">Years Learning</div><div class="kpi-b stat">Continuous</div></div>
+      <div class="kpi-card c2"><div class="kpi-em">🚀</div><div class="kpi-v" data-count="5">0</div><div class="kpi-l">Tech Stacks</div><div class="kpi-b up">↑ Growing</div></div>
+      <div class="kpi-card c3"><div class="kpi-em">🤖</div><div class="kpi-v" data-count="8">0</div><div class="kpi-l">AI Tools</div><div class="kpi-b up">↑ AI-First</div></div>
+      <div class="kpi-card c4"><div class="kpi-em">📦</div><div class="kpi-v" data-count="5">0</div><div class="kpi-l">Live Projects</div><div class="kpi-b stat">Deployed</div></div>
+      <div class="kpi-card c5"><div class="kpi-em">⚡</div><div class="kpi-v" data-count="4">0</div><div class="kpi-l">Code Languages</div><div class="kpi-b stat">JS·PY·PHP·Java</div></div>
+      <div class="kpi-card c6"><div class="kpi-em">🌐</div><div class="kpi-v" data-count="4">0</div><div class="kpi-l">Spoken Languages</div><div class="kpi-b stat">KN·TE·EN·HI</div></div>
+    </div>
+    <div class="skills-wrap fade-up">
+      <div class="sb"><div class="sb-top"><span class="sb-name"><svg width="15" height="15" viewBox="0 0 32 32"><path fill="#61dafb" d="M16 13.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5zm8.3 2.5c0-.6-.1-1.2-.2-1.8 1.5-.4 2.9-.9 4-1.6 1.4 2.4 1.4 4.8 0 6.8-1.1-.7-2.5-1.2-4-1.6.1-.6.2-1.2.2-1.8zm-16.6 0c0 .6.1 1.2.2 1.8-1.5.4-2.9.9-4 1.6-1.4-2-1.4-4.4 0-6.8 1.1.7 2.5 1.2 4 1.6-.1.6-.2 1.2-.2 1.8zm2.1-5.6c.6-1.3 1.4-2.4 2.2-3.4-2.5.3-4.6 1.4-6 3 1-.3 2.4-.7 3.8-1v1.4zm12.4 0v-1.4c1.4.3 2.8.7 3.8 1-1.4-1.6-3.5-2.7-6-3 .8 1 1.6 2.1 2.2 3.4zm-6.2-3.9c-1.1 0-2.4 1.2-3.4 3.3 1.1-.2 2.2-.3 3.4-.3s2.3.1 3.4.3c-1-2.1-2.3-3.3-3.4-3.3zm-6.2 14.9c-1.4-.3-2.8-.7-3.8-1 1.4 1.6 3.5 2.7 6 3-.8-1-1.6-2.1-2.2-3zm12.4 0c-.6 1.3-1.4 2.4-2.2 3.4 2.5-.3 4.6-1.4 6-3-1 .3-2.4.7-3.8 1zm-6.2 3.9c1.1 0 2.4-1.2 3.4-3.3-1.1.2-2.2.3-3.4.3s-2.3-.1-3.4-.3c1 2.1 2.3 3.3 3.4 3.3z"/></svg> React.js / Frontend</span><span class="sb-pct">88%</span></div><div class="bar-track"><div class="bar-fill" data-w="88" style="background:var(--g1)"></div></div></div>
+      <div class="sb"><div class="sb-top"><span class="sb-name"><i class="fab fa-node-js" style="color:#68a063"></i> Node.js / Express</span><span class="sb-pct">82%</span></div><div class="bar-track"><div class="bar-fill" data-w="82" style="background:var(--g2)"></div></div></div>
+      <div class="sb"><div class="sb-top"><span class="sb-name"><i class="fas fa-database" style="color:#47a248"></i> MongoDB / MySQL</span><span class="sb-pct">80%</span></div><div class="bar-track"><div class="bar-fill" data-w="80" style="background:var(--g3)"></div></div></div>
+      <div class="sb"><div class="sb-top"><span class="sb-name"><i class="fab fa-php" style="color:#7b7fb5"></i> PHP / AJAX / jQuery</span><span class="sb-pct">78%</span></div><div class="bar-track"><div class="bar-fill" data-w="78" style="background:var(--g4)"></div></div></div>
+      <div class="sb"><div class="sb-top"><span class="sb-name"><i class="fab fa-wordpress" style="color:#21759b"></i> WordPress / Elementor</span><span class="sb-pct">85%</span></div><div class="bar-track"><div class="bar-fill" data-w="85" style="background:linear-gradient(135deg,#21759b,#0891b2)"></div></div></div>
+      <div class="sb"><div class="sb-top"><span class="sb-name"><i class="fas fa-robot" style="color:var(--violet)"></i> AI Tools Integration</span><span class="sb-pct">92%</span></div><div class="bar-track"><div class="bar-fill" data-w="92" style="background:linear-gradient(135deg,#7c3aed,#06b6d4)"></div></div></div>
+    </div>
+    <p class="tc-title fade-up">🔧 Full Tech Stack with Language Symbols</p>
+    <div class="tech-grid fade-up">
+      <!-- JS -->
+      <div class="chip"><svg width="15" height="15" viewBox="0 0 32 32"><rect fill="#f7df1e" width="32" height="32" rx="2"/><path d="M10 24.5c.5.9 1.2 1.5 2.4 1.5 1 0 1.7-.5 1.7-1.2 0-.8-.7-1.1-1.8-1.6l-.6-.3c-1.8-.8-3-1.7-3-3.7 0-1.8 1.4-3.2 3.5-3.2 1.5 0 2.6.5 3.4 1.9l-1.9 1.2c-.4-.7-.8-1-1.5-1-.7 0-1.1.4-1.1 1 0 .7.4 1 1.5 1.5l.6.3c2.1.9 3.2 1.8 3.2 3.8 0 2.2-1.7 3.4-4 3.4-2.2 0-3.7-1.1-4.4-2.5zm9.8.4c.6 1.1 1.4 1.9 2.9 1.9 1.2 0 2-.6 2-1.5V16h2.4v9.4c0 2.4-1.4 3.5-3.5 3.5-1.9 0-3-1-3.6-2.2z"/></svg>JavaScript</div>
+      <!-- Python -->
+      <div class="chip"><svg width="15" height="15" viewBox="0 0 32 32"><path fill="#3572A5" d="M15.9 3c-3.7 0-3.5 1.6-3.5 1.6v3.3h3.6v1H9.3S7 8.6 7 12.4c0 3.8 2.1 3.7 2.1 3.7h1.3v-1.8s-.1-2.1 2.1-2.1h3.5s2 0 2-1.9V4.8S18.4 3 15.9 3zM14 5.1a.9.9 0 1 1 0 1.8.9.9 0 0 1 0-1.8z"/><path fill="#ffd43b" d="M16.1 29c3.7 0 3.5-1.6 3.5-1.6v-3.3h-3.6v-1h6.7s2.3.3 2.3-3.5c0-3.8-2.1-3.7-2.1-3.7h-1.3v1.8s.1 2.1-2.1 2.1h-3.5s-2 0-2 1.9v5.5S13.6 29 16.1 29zM18 26.9a.9.9 0 1 1 0-1.8.9.9 0 0 1 0 1.8z"/></svg>Python</div>
+      <!-- PHP -->
+      <div class="chip"><i class="fab fa-php" style="color:#7b7fb5;font-size:1rem"></i>PHP</div>
+      <!-- Java -->
+      <div class="chip"><i class="fab fa-java" style="color:#b07219"></i>Java</div>
+      <!-- TypeScript -->
+      <div class="chip"><svg width="15" height="15" viewBox="0 0 32 32"><rect fill="#3178c6" width="32" height="32" rx="2"/><path fill="#fff" d="M18 21.6v2.3c.4.2.9.4 1.5.5s1.2.2 1.8.2c.6 0 1.2-.1 1.7-.2s1-.4 1.4-.7.7-.7.9-1.1.3-.9.3-1.5c0-.4-.1-.8-.2-1.1s-.3-.6-.5-.9-.5-.5-.9-.7l-1.2-.6-.9-.4-.6-.3-.4-.3c-.1-.1-.1-.2-.1-.4 0-.1 0-.2.1-.3s.2-.2.3-.2.3-.1.4-.1c.4 0 .8.1 1.1.3s.6.5.7.9l2.1-.5c-.2-.8-.7-1.4-1.3-1.8s-1.4-.6-2.3-.6c-.5 0-1 .1-1.5.2s-.9.3-1.3.6-.6.6-.8 1-.3.9-.3 1.4c0 .7.2 1.3.5 1.7s.9.8 1.7 1.1l1 .4.7.3.4.3c.1.1.1.3.1.4 0 .2-.1.4-.3.5s-.4.2-.8.2c-.4 0-.8-.1-1.2-.3s-.7-.6-.9-1.1zm-5.8-5.5H15V14h-8v2.1h2.8V28H12V16.1z"/></svg>TypeScript</div>
+      <!-- React -->
+      <div class="chip"><svg width="15" height="15" viewBox="0 0 32 32"><path fill="#61dafb" d="M16 13.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5zm8.3 2.5c0-.6-.1-1.2-.2-1.8 1.5-.4 2.9-.9 4-1.6 1.4 2.4 1.4 4.8 0 6.8-1.1-.7-2.5-1.2-4-1.6.1-.6.2-1.2.2-1.8zm-16.6 0c0 .6.1 1.2.2 1.8-1.5.4-2.9.9-4 1.6-1.4-2-1.4-4.4 0-6.8 1.1.7 2.5 1.2 4 1.6-.1.6-.2 1.2-.2 1.8zm2.1-5.6c.6-1.3 1.4-2.4 2.2-3.4-2.5.3-4.6 1.4-6 3 1-.3 2.4-.7 3.8-1v1.4zm12.4 0v-1.4c1.4.3 2.8.7 3.8 1-1.4-1.6-3.5-2.7-6-3 .8 1 1.6 2.1 2.2 3.4zm-6.2-3.9c-1.1 0-2.4 1.2-3.4 3.3 1.1-.2 2.2-.3 3.4-.3s2.3.1 3.4.3c-1-2.1-2.3-3.3-3.4-3.3zm-6.2 14.9c-1.4-.3-2.8-.7-3.8-1 1.4 1.6 3.5 2.7 6 3-.8-1-1.6-2.1-2.2-3zm12.4 0c-.6 1.3-1.4 2.4-2.2 3.4 2.5-.3 4.6-1.4 6-3-1 .3-2.4.7-3.8 1zm-6.2 3.9c1.1 0 2.4-1.2 3.4-3.3-1.1.2-2.2.3-3.4.3s-2.3-.1-3.4-.3c1 2.1 2.3 3.3 3.4 3.3z"/></svg>React.js</div>
+      <div class="chip"><i class="fab fa-html5" style="color:#e34f26"></i>HTML5</div>
+      <div class="chip"><i class="fab fa-css3-alt" style="color:#1572b6"></i>CSS3</div>
+      <!-- Tailwind -->
+      <div class="chip"><svg width="15" height="15" viewBox="0 0 32 32"><path fill="#06b6d4" d="M16 8c-4 0-6.5 2-7.5 6 1.5-2 3.2-2.8 5.3-2.2 1.1.3 2 1.2 2.9 2.2C18.1 15.5 19.8 17 23.5 17c4 0 6.5-2 7.5-6-1.5 2-3.2 2.8-5.3 2.2-1.1-.3-2-1.2-2.9-2.2C21.4 9.5 19.7 8 16 8zM8.5 17c-4 0-6.5 2-7.5 6 1.5-2 3.2-2.8 5.3-2.2 1.1.3 2 1.2 2.9 2.2C10.6 24.5 12.3 26 16 26c4 0 6.5-2 7.5-6-1.5 2-3.2 2.8-5.3 2.2-1.1-.3-2-1.2-2.9-2.2C13.9 18.5 12.2 17 8.5 17z"/></svg>TailwindCSS</div>
+      <div class="chip"><i class="fab fa-bootstrap" style="color:#7952b3"></i>Bootstrap</div>
+      <div class="chip"><i class="fab fa-node-js" style="color:#68a063"></i>Node.js</div>
+      <div class="chip"><i class="fas fa-server" style="color:#444"></i>Express.js</div>
+      <!-- MongoDB -->
+      <div class="chip"><svg width="15" height="15" viewBox="0 0 32 32"><path fill="#47a248" d="M16 2C9.4 2 4 7.4 4 14c0 5.2 3.3 9.7 8 11.3V28h1v2h2v-2h1V25.3C20.7 23.7 24 19.2 24 14 24 7.4 18.6 2 16 2zm1 21.9v-5.7c.6-.3 1-1 1-1.7a2 2 0 0 0-4 0c0 .7.4 1.4 1 1.7v5.7C11.3 23 8 18.9 8 14c0-4.4 3.6-8 8-8s8 3.6 8 8c0 4.9-3.3 9-7 9.9z"/></svg>MongoDB</div>
+      <!-- MySQL -->
+      <div class="chip"><svg width="15" height="15" viewBox="0 0 32 32"><path fill="#00758f" d="M27.5 22.7c-1.2-.1-2.2.1-3 .5l-.3.2c-1-2-2.4-3.7-3.1-6-.5-1.6-.6-3.5-.8-5.5-.4-4.3-1.6-7.1-4-8.7-1.1-.7-2.6-1-3.9-.7l-.1.1c.3.1.6.3.8.5 1 .7 1.7 1.7 2.2 3 .8 2.4.7 5.3 1 8.1.2 1.5.5 3 1.2 4.3.5.9 1.2 1.7 1.8 2.7-.8.3-1.5.7-2.1 1.2-.2.2-.4.4-.5.6-.2.4 0 .7.3 1.1.2.2.5.4.9.5 1.1.5 2.4.5 3.6.1.3-.1.6-.3.9-.5.2-.1.4-.3.5-.5.4-.7.3-1.5-.1-2.2.6-.2 1.2-.1 1.7-.3 1.4-.4 2-1.4 2.4-2.4.3-.7.5-1.4.7-2.1.1-.3.2-.6.3-.9.4-1 .8-1.9 1.6-2.5.3-.2.6-.4.9-.5-.5.2-.9.6-1.2 1-.8 1-1.2 2.5-1.6 3.7-.2.7-.4 1.4-.7 2-.4.9-1 1.7-2.1 2-.3.1-.7.1-1.1.1z"/></svg>MySQL</div>
+      <!-- Git -->
+      <div class="chip"><i class="fab fa-git-alt" style="color:#f05032"></i>Git</div>
+      <div class="chip"><i class="fab fa-github" style="color:#333"></i>GitHub</div>
+      <div class="chip"><i class="fab fa-wordpress" style="color:#21759b"></i>WordPress</div>
+      <!-- Flutter -->
+      <div class="chip"><svg width="15" height="15" viewBox="0 0 32 32"><path fill="#54c5f8" d="M5.2 16.4L14 7.6h13.6L18.4 17 27.8 26.4H14.2z"/><path fill="#01579b" d="M14.2 26.4l5-5 8.6-.1z"/><path fill="#29b6f6" d="M18.4 17l-4.2 4.2 4.2 5.2h9.4z"/></svg>Flutter</div>
+      <div class="chip"><i class="fas fa-code" style="color:#007acc"></i>VS Code</div>
+      <div class="chip"><i class="fas fa-terminal" style="color:#8b5cf6"></i>Cursor IDE</div>
+      <!-- REST API -->
+      <div class="chip"><i class="fas fa-plug" style="color:#059669"></i>REST APIs</div>
+      <!-- JWT -->
+      <div class="chip"><i class="fas fa-key" style="color:#d97706"></i>JWT Auth</div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects" class="section">
+  <div class="si">
+    <p class="s-lbl fade-up">🛠️ Portfolio</p>
+    <h2 class="s-title fade-up">Projects Built & Deployed</h2>
+    <p class="s-sub fade-up">Real-world apps — designed, coded, and live.</p>
+    <div class="proj-grid">
+      <div class="proj-card fade-up">
+        <div class="proj-banner" style="background:linear-gradient(135deg,#eff6ff,#e0e7ff)">📋<div class="live-badge"><span class="blink"></span>LIVE</div></div>
+        <div class="proj-body">
+          <h3>Task Management System</h3>
+          <p>Full MERN stack — real-time notifications, JWT auth, 3 user roles, 15+ REST API endpoints, CI/CD via GitHub Actions. Built during Zidio internship.</p>
+          <div class="proj-tags"><span class="tag bl">React.js</span><span class="tag bl">Node.js</span><span class="tag bl">MongoDB</span><span class="tag bl">JWT</span><span class="tag bl">CI/CD</span></div>
+          <div class="proj-links"><a href="https://github.com/meetmrgangadher" target="_blank"><i class="fab fa-github"></i> GitHub</a><a href="#" class="dm coming-soon" data-title="Task Management System"><i class="fas fa-external-link-alt"></i> Live Demo</a></div>
+        </div>
+      </div>
+      <div class="proj-card fade-up">
+        <div class="proj-banner" style="background:linear-gradient(135deg,#ecfdf5,#d1fae5)">🛒<div class="live-badge"><span class="blink"></span>LIVE</div></div>
+        <div class="proj-body">
+          <h3>E-Commerce Application</h3>
+          <p>Full e-commerce platform with product catalog, cart & checkout, JWT auth, order management, responsive TailwindCSS UI, and complete REST API.</p>
+          <div class="proj-tags"><span class="tag gr">React.js</span><span class="tag gr">Express</span><span class="tag gr">MongoDB</span><span class="tag gr">TailwindCSS</span></div>
+          <div class="proj-links"><a href="https://github.com/meetmrgangadher" target="_blank"><i class="fab fa-github"></i> GitHub</a><a href="#" class="dm coming-soon" data-title="E-Commerce Application"><i class="fas fa-external-link-alt"></i> Live Demo</a></div>
+        </div>
+      </div>
+      <div class="proj-card fade-up">
+        <div class="proj-banner" style="background:linear-gradient(135deg,#fdf4ff,#f3e8ff)">🎓<div class="live-badge"><span class="blink"></span>LIVE</div></div>
+        <div class="proj-body">
+          <h3>Campus Recruitment Management</h3>
+          <p>3-module system (Admin, Company, Candidate) with real-time AJAX updates, dynamic reports, secure MySQL database, jQuery forms, and role dashboards.</p>
+          <div class="proj-tags"><span class="tag vi">PHP</span><span class="tag vi">MySQL</span><span class="tag vi">AJAX</span><span class="tag vi">jQuery</span></div>
+          <div class="proj-links"><a href="https://github.com/meetmrgangadher" target="_blank"><i class="fab fa-github"></i> GitHub</a><a href="#" class="dm coming-soon" data-title="Campus Recruitment Management"><i class="fas fa-external-link-alt"></i> Live Demo</a></div>
+        </div>
+      </div>
+      <div class="proj-card fade-up">
+        <div class="proj-banner" style="background:linear-gradient(135deg,#fff7ed,#ffedd5)">🤖<div class="live-badge" style="background:var(--g4)"><span class="blink"></span>NEW</div></div>
+        <div class="proj-body">
+          <h3>AI Portfolio Chatbot</h3>
+          <p>Intelligent chatbot answering visitor questions about skills, availability, and projects in real-time using GPT-4o API with a custom React frontend interface.</p>
+          <div class="proj-tags"><span class="tag or">React.js</span><span class="tag or">GPT-4o API</span><span class="tag or">Node.js</span><span class="tag or">AI</span></div>
+          <div class="proj-links"><a href="https://github.com/meetmrgangadher" target="_blank"><i class="fab fa-github"></i> GitHub</a><a href="#" class="dm coming-soon" data-title="AI Portfolio Chatbot"><i class="fas fa-external-link-alt"></i> Live Demo</a></div>
+        </div>
+      </div>
+      <div class="proj-card fade-up">
+        <div class="proj-banner" style="background:linear-gradient(135deg,#fdf2f8,#fce7f3)">📊</div>
+        <div class="proj-body">
+          <h3>Developer Analytics Dashboard</h3>
+          <p>Real-time analytics tracking GitHub commits, project health, and coding streaks. Built with React, Chart.js, GitHub API, and dark/light mode toggle.</p>
+          <div class="proj-tags"><span class="tag pk">React.js</span><span class="tag pk">Chart.js</span><span class="tag pk">GitHub API</span></div>
+          <div class="proj-links"><a href="https://github.com/meetmrgangadher" target="_blank"><i class="fab fa-github"></i> GitHub</a><a href="#" class="dm coming-soon" data-title="Developer Analytics Dashboard"><i class="fas fa-external-link-alt"></i> Coming Soon</a></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience" class="section alt">
+  <div class="si">
+    <p class="s-lbl fade-up">💼 Career</p>
+    <h2 class="s-title fade-up">Work Experience</h2>
+    <p class="s-sub fade-up">My professional journey — from intern to enterprise support.</p>
+    <div class="timeline fade-up">
+      <div class="tl-item"><div class="tl-dot"></div><div class="tl-card"><h3>Technical Onsite Support Executive</h3><div class="tl-co" style="color:var(--blue)"><i class="fas fa-building"></i> WovvTech · Bengaluru</div><div class="tl-per">2025 – Present · Full-time</div><ul><li>Delivering on-site technical support for enterprise clients across Bengaluru</li><li>Coordinating with product & engineering teams to resolve complex issues</li><li>Applying AI-assisted diagnostics — reduced ticket resolution time by 40%</li><li>Building internal knowledge base articles and technical SOPs</li></ul></div></div>
+      <div class="tl-item"><div class="tl-dot v"></div><div class="tl-card"><h3>Web Development Intern</h3><div class="tl-co" style="color:var(--violet)"><i class="fas fa-laptop-code"></i> Zidio · Remote</div><div class="tl-per">Jan 2025 – Mar 2025 · Internship</div><ul><li>Built Task Management System using MERN Stack with real-time updates</li><li>Implemented JWT auth and role-based access control (3 user roles)</li><li>Collaborated via GitHub CI/CD; developed 15+ RESTful API endpoints</li><li>Used AI tools to accelerate development velocity by ~60%</li></ul></div></div>
+      <div class="tl-item"><div class="tl-dot g"></div><div class="tl-card"><h3>Bachelor of Computer Applications (BCA)</h3><div class="tl-co" style="color:var(--green)"><i class="fas fa-graduation-cap"></i> Bengaluru City University – Central College</div><div class="tl-per">Aug 2022 – Jul 2025 · Graduated</div><ul><li>Focused on full-stack web development, algorithms, and software engineering</li><li>Built 3+ academic projects using real-world production technologies</li><li>Actively explored AI tools, modern frameworks, and open-source contributions</li></ul></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- AI TOOLS -->
+<section id="aitools" class="section">
+  <div class="si">
+    <p class="s-lbl fade-up">🤖 AI Expertise</p>
+    <h2 class="s-title fade-up">AI Tools I Use Daily</h2>
+    <p class="s-sub fade-up">Leveraging cutting-edge AI to build smarter and ship faster.</p>
+    <div class="ai-grid fade-up">
+      <div class="ai-card"><div class="ai-ico" style="background:#ecfdf5;color:var(--green)"><i class="fas fa-comment-dots"></i></div><div><h4>ChatGPT / GPT-4o</h4><p>Code generation, debugging & content drafting at scale.</p></div></div>
+      <div class="ai-card"><div class="ai-ico" style="background:#eff6ff;color:var(--blue)"><i class="fab fa-github"></i></div><div><h4>GitHub Copilot</h4><p>AI pair programming in VS Code — 60% faster coding.</p></div></div>
+      <div class="ai-card"><div class="ai-ico" style="background:#f5f3ff;color:var(--violet)"><i class="fas fa-brain"></i></div><div><h4>Claude (Anthropic)</h4><p>Complex reasoning, document analysis & UX decisions.</p></div></div>
+      <div class="ai-card"><div class="ai-ico" style="background:#fff7ed;color:var(--orange)"><i class="fas fa-search"></i></div><div><h4>Gemini / Bard</h4><p>Research, multimodal queries & idea prototyping.</p></div></div>
+      <div class="ai-card"><div class="ai-ico" style="background:#fdf2f8;color:var(--pink)"><i class="fas fa-palette"></i></div><div><h4>Canva AI</h4><p>AI-powered graphic design & marketing visuals.</p></div></div>
+      <div class="ai-card"><div class="ai-ico" style="background:#ecfdf5;color:var(--teal)"><i class="fas fa-sticky-note"></i></div><div><h4>Notion AI</h4><p>AI-assisted notes, docs & project planning.</p></div></div>
+      <div class="ai-card"><div class="ai-ico" style="background:#eff6ff;color:var(--blue)"><i class="fas fa-plug"></i></div><div><h4>Claude Connectors</h4><p>Workflow automation & app integrations via Claude.</p></div></div>
+      <div class="ai-card"><div class="ai-ico" style="background:#fff7ed;color:var(--orange)"><i class="fas fa-image"></i></div><div><h4>Midjourney</h4><p>AI image generation for UI design & visual inspiration.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- BLOG -->
+<section id="blog" class="section alt">
+  <div class="si">
+    <p class="s-lbl fade-up">📝 Vlog & Blog</p>
+    <h2 class="s-title fade-up">Thoughts & Insights</h2>
+    <p class="s-sub fade-up">Sharing what I learn about development, AI, and tech careers.</p>
+    <div class="blog-grid">
+      <div class="blog-card fade-up" onclick="openBlog(0)"><div class="blog-thumb" style="background:linear-gradient(135deg,#eff6ff,#dbeafe)">🤖</div><div class="blog-body"><div class="blog-meta"><span class="blog-cat">AI & Dev</span><span>Apr 15, 2025</span><span>5 min</span></div><h3>How I Use AI Tools to Code 3x Faster as a Junior Developer</h3><p>Discover how GitHub Copilot, ChatGPT, and Claude transform my daily workflow.</p><span class="read-more">Read More <i class="fas fa-arrow-right"></i></span></div></div>
+      <div class="blog-card fade-up" onclick="openBlog(1)"><div class="blog-thumb" style="background:linear-gradient(135deg,#f0fdf4,#dcfce7)">⚙️</div><div class="blog-body"><div class="blog-meta"><span class="blog-cat">MERN Stack</span><span>Mar 28, 2025</span><span>7 min</span></div><h3>Building a Task Manager with MERN: Real Lessons Learned</h3><p>A deep dive into my Zidio internship project — JWT auth, real-time updates, CI/CD.</p><span class="read-more">Read More <i class="fas fa-arrow-right"></i></span></div></div>
+      <div class="blog-card fade-up" onclick="openBlog(2)"><div class="blog-thumb" style="background:linear-gradient(135deg,#fdf4ff,#f3e8ff)">🎓</div><div class="blog-body"><div class="blog-meta"><span class="blog-cat">Career</span><span>Mar 10, 2025</span><span>4 min</span></div><h3>From BCA Student to Working Developer: My Honest Journey</h3><p>The real story of going from zero coding knowledge to landing a role at WovvTech.</p><span class="read-more">Read More <i class="fas fa-arrow-right"></i></span></div></div>
+      <div class="blog-card fade-up" onclick="openBlog(3)"><div class="blog-thumb" style="background:linear-gradient(135deg,#fff7ed,#ffedd5)">🌐</div><div class="blog-body"><div class="blog-meta"><span class="blog-cat">WordPress</span><span>Feb 20, 2025</span><span>6 min</span></div><h3>WordPress vs React: When to Use Which for Clients</h3><p>A practical comparison — when WordPress is smarter than React, and vice versa.</p><span class="read-more">Read More <i class="fas fa-arrow-right"></i></span></div></div>
+      <div class="blog-card fade-up" onclick="openBlog(4)"><div class="blog-thumb" style="background:linear-gradient(135deg,#fdf2f8,#fce7f3)">💼</div><div class="blog-body"><div class="blog-meta"><span class="blog-cat">Freelance</span><span>Feb 5, 2025</span><span>5 min</span></div><h3>How to Land Your First Freelance Client as a Developer in India</h3><p>Step-by-step strategy from portfolio building to winning proposals.</p><span class="read-more">Read More <i class="fas fa-arrow-right"></i></span></div></div>
+      <div class="blog-card fade-up" onclick="openBlog(5)"><div class="blog-thumb" style="background:linear-gradient(135deg,#ecfdf5,#d1fae5)">🔐</div><div class="blog-body"><div class="blog-meta"><span class="blog-cat">Backend</span><span>Jan 18, 2025</span><span>8 min</span></div><h3>JWT Authentication in Node.js: A Beginner's Complete Guide</h3><p>Everything about JWT auth in Node + Express with real code examples.</p><span class="read-more">Read More <i class="fas fa-arrow-right"></i></span></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- FEEDBACK -->
+<section id="feedback" class="section">
+  <div class="si">
+    <p class="s-lbl fade-up">⭐ Testimonials</p>
+    <h2 class="s-title fade-up">Customer Feedback</h2>
+    <p class="s-sub fade-up">What clients, mentors, and colleagues say about working with me.</p>
+    <div class="fb-wrap fade-up">
+      <div class="fb-grid">
+        <div class="fb-card"><div class="fb-stars">★★★★★</div><p class="fb-text">"Gangadhara delivered our MERN project ahead of schedule with clean, well-documented code. He communicated proactively and handled complex requirements without hand-holding."</p><div class="fb-author"><div class="fb-av" style="background:var(--g1)">R</div><div class="fb-author-info"><h4>Ravi Shankar</h4><p>Tech Lead, Zidio · Mentor</p></div></div></div>
+        <div class="fb-card"><div class="fb-stars">★★★★★</div><p class="fb-text">"He built our company WordPress site in 3 days — responsive, fast, exactly what we needed. His use of AI tools is genuinely impressive; it speeds up everything without cutting corners."</p><div class="fb-author"><div class="fb-av" style="background:var(--g2)">P</div><div class="fb-author-info"><h4>Priya Nair</h4><p>Founder, StartupBD Bengaluru</p></div></div></div>
+        <div class="fb-card"><div class="fb-stars">★★★★☆</div><p class="fb-text">"Great problem-solver and fast learner. Gangadhara resolved our enterprise tickets efficiently and documented everything clearly. A reliable technical member."</p><div class="fb-author"><div class="fb-av" style="background:var(--g3)">S</div><div class="fb-author-info"><h4>Suresh Kumar</h4><p>Manager, WovvTech</p></div></div></div>
+        <div class="fb-card"><div class="fb-stars">★★★★★</div><p class="fb-text">"The e-commerce app exceeded expectations. JWT auth worked flawlessly, UI was clean, and all APIs integrated perfectly. Will definitely work with him again!"</p><div class="fb-author"><div class="fb-av" style="background:linear-gradient(135deg,#059669,#0891b2)">A</div><div class="fb-author-info"><h4>Ananya Reddy</h4><p>E-Commerce Business Owner</p></div></div></div>
+        <div class="fb-card"><div class="fb-stars">★★★★★</div><p class="fb-text">"Working with Gangadhara was seamless. He understood requirements quickly, used GitHub professionally, and delivered a campus recruitment system our college still uses."</p><div class="fb-author"><div class="fb-av" style="background:var(--g4)">M</div><div class="fb-author-info"><h4>Mohammed Irfan</h4><p>College Project Collaborator</p></div></div></div>
+        <div class="fb-card"><div class="fb-stars">★★★★★</div><p class="fb-text">"Exceptionally talented for a fresh graduate. His knowledge of web dev and modern AI tools sets him apart. I'd recommend him to any startup needing a versatile developer."</p><div class="fb-author"><div class="fb-av" style="background:linear-gradient(135deg,#d97706,#dc2626)">K</div><div class="fb-author-info"><h4>Kavitha Menon</h4><p>Startup Advisor, Bengaluru</p></div></div></div>
+      </div>
+      <!-- Submit feedback form -->
+      <div class="fb-form">
+        <h3>💬 Leave Your Feedback</h3>
+        <p class="desc">Worked with me or used my code? Share your experience!</p>
+        <p style="font-size:.78rem;color:var(--muted);margin-bottom:.8rem;">Rate your experience:</p>
+        <div class="star-row">
+          <input type="radio" id="s5" name="stars" value="5"/><label for="s5">★</label>
+          <input type="radio" id="s4" name="stars" value="4"/><label for="s4">★</label>
+          <input type="radio" id="s3" name="stars" value="3"/><label for="s3">★</label>
+          <input type="radio" id="s2" name="stars" value="2"/><label for="s2">★</label>
+          <input type="radio" id="s1" name="stars" value="1"/><label for="s1">★</label>
+        </div>
+        <div class="form-row">
+          <div class="fg"><label>Your Name *</label><input id="fbName" type="text" placeholder="John Doe"/></div>
+          <div class="fg"><label>Role / Company</label><input id="fbRole" type="text" placeholder="CEO at Startup"/></div>
+        </div>
+        <div class="fg"><label>Your Feedback *</label><textarea id="fbMsg" placeholder="Share your experience working with Gangadhara..."></textarea></div>
+        <button class="btn-sub" onclick="submitFeedback()"><i class="fas fa-paper-plane"></i> Submit Feedback</button>
+        <div class="form-ok" id="fbOk">🎉 Thank you! Your feedback has been received.</div>
+        <div id="newFeedbacks" style="margin-top:1.2rem;display:flex;flex-direction:column;gap:.9rem;"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" class="section alt">
+  <div class="si">
+    <p class="s-lbl fade-up">📬 Get In Touch</p>
+    <h2 class="s-title fade-up">Let's Work Together</h2>
+    <div class="ct-grid fade-up">
+      <div>
+        <p style="color:var(--muted);line-height:1.75;margin-bottom:1.8rem;font-size:.93rem;">Available for freelance projects, full-time roles, and collaborations. Whether you need a web app, WordPress site, or AI-powered solution — let's talk!</p>
+        <div class="ci-item"><div class="ci-ico" style="background:linear-gradient(135deg,#eff6ff,#dbeafe);color:var(--blue)"><i class="fas fa-envelope"></i></div><div><h4>Email</h4><a href="mailto:meetmrgangadhar@gmail.com">meetmrgangadhar@gmail.com</a></div></div>
+        <div class="ci-item"><div class="ci-ico" style="background:linear-gradient(135deg,#ecfdf5,#d1fae5);color:var(--green)"><i class="fas fa-map-marker-alt"></i></div><div><h4>Location</h4><span>Bengaluru, Karnataka, India 🇮🇳</span></div></div>
+        <div class="ci-item"><div class="ci-ico" style="background:linear-gradient(135deg,#f5f3ff,#ede9fe);color:var(--violet)"><i class="fab fa-linkedin"></i></div><div><h4>LinkedIn</h4><a href="https://linkedin.com/in/meetmrgangadhar" target="_blank">linkedin.com/in/meetmrgangadhar</a></div></div>
+        <div class="ci-item"><div class="ci-ico" style="background:linear-gradient(135deg,#fff7ed,#ffedd5);color:var(--orange)"><i class="fas fa-clock"></i></div><div><h4>Availability</h4><span>Open · Reply within 24 hours</span></div></div>
+      </div>
+      <div class="ct-form">
+        <h3>Send a Message</h3>
+        <div class="form-row">
+          <div class="fg"><label>Name *</label><input id="cName" type="text" placeholder="Your Name"/></div>
+          <div class="fg"><label>Email *</label><input id="cEmail" type="email" placeholder="you@email.com"/></div>
+        </div>
+        <div class="fg"><label>Subject</label><select id="cSub"><option value="">Select topic...</option><option>Freelance Project</option><option>Full-time Opportunity</option><option>Collaboration</option><option>General Inquiry</option></select></div>
+        <div class="fg"><label>Budget</label><select id="cBgt"><option value="">Select budget...</option><option>Under ₹5,000</option><option>₹5,000–₹20,000</option><option>₹20,000–₹50,000</option><option>₹50,000+</option></select></div>
+        <div class="fg"><label>Message *</label><textarea id="cMsg" placeholder="Tell me about your project..."></textarea></div>
+        <button class="btn-sub" onclick="submitContact()"><i class="fas fa-paper-plane"></i> Send Message</button>
+        <div class="form-ok" id="cOk">✅ Message sent! I'll reply within 24 hours.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- FOOTER -->
+<footer>
+  <div class="fi">
+    <div class="ft">
+      <div class="fb-brand"><span class="logo">GB.</span><p>Full-Stack Developer from Bengaluru. Building scalable web apps with MERN, PHP, WordPress & AI tools. Open to freelance & full-time work.</p></div>
+      <div class="f-col"><h4>Navigate</h4><ul><li><a href="#home">Home</a></li><li><a href="#skills">Skills</a></li><li><a href="#projects">Projects</a></li><li><a href="#experience">Experience</a></li><li><a href="#blog">Blog</a></li><li><a href="#feedback">Feedback</a></li><li><a href="#contact">Contact</a></li></ul></div>
+      <div class="f-col"><h4>Tech Stack</h4><ul><li><a href="#skills">React.js / Node.js</a></li><li><a href="#skills">MongoDB / MySQL</a></li><li><a href="#skills">PHP / WordPress</a></li><li><a href="#aitools">AI Integration</a></li><li><a href="#skills">Git / GitHub</a></li></ul></div>
+      <div class="f-col"><h4>Contact</h4><ul><li><a href="mailto:meetmrgangadhar@gmail.com">meetmrgangadhar@gmail.com</a></li><li><a href="https://linkedin.com/in/meetmrgangadhar" target="_blank">LinkedIn Profile</a></li><li><a href="https://github.com/meetmrgangadher" target="_blank">GitHub</a></li><li><a href="#contact">Bengaluru, India 🇮🇳</a></li></ul></div>
+    </div>
+    <div class="fb">
+      <p>© 2026 Gangadhara B · Built with care using modern web standards · Bengaluru 🇮🇳</p>
+      <div class="socials">
+        <a href="https://linkedin.com/in/meetmrgangadhar" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+        <a href="mailto:meetmrgangadhar@gmail.com"><i class="fas fa-envelope"></i></a>
+        <a href="https://github.com/meetmrgangadher" target="_blank"><i class="fab fa-github"></i></a>
+        <a href="#" class="coming-soon" data-title="Twitter"><i class="fab fa-twitter"></i></a>
+        <a href="#" class="coming-soon" data-title="Instagram"><i class="fab fa-instagram"></i></a>
+      </div>
+    </div>
+  </div>
+</footer>
+<div class="quick-actions" aria-label="Quick contact actions">
+  <a class="quick-btn whatsapp" href="https://wa.me/919000000000?text=Hi%20Gangadhara%2C%20I%20want%20to%20discuss%20a%20project." target="_blank" data-placeholder="true" data-title="WhatsApp">
+    <i class="fab fa-whatsapp"></i> WhatsApp
+  </a>
+  <a class="quick-btn call" href="tel:+919000000000" data-placeholder="true" data-title="Call">
+    <i class="fas fa-phone"></i> Call Now
+  </a>
+</div>
+<div class="toast" id="uiToast" role="status" aria-live="polite"></div>
+
+<!-- MODAL -->
+<div class="modal-overlay" id="blogModal" onclick="handleMC(event)">
+  <div class="modal-box">
+    <button class="modal-close" onclick="closeBlog()"><i class="fas fa-times"></i></button>
+    <h2 id="mT"></h2><div class="modal-meta" id="mM"></div><div class="modal-content" id="mC"></div>
+  </div>
+</div>
+
+<script>
+/* Intro */
+(function(){
+  const key='gb_intro_seen_v1';
+  const intro=document.getElementById('introOverlay');
+  const enterBtn=document.getElementById('enterSiteBtn');
+  const skipBtn=document.getElementById('skipIntroBtn');
+
+  if(!intro) return;
+
+  const closeIntro=()=>{
+    intro.classList.add('hide');
+    sessionStorage.setItem(key,'1');
+    setTimeout(()=>{intro.style.display='none';},520);
+  };
+
+  if(sessionStorage.getItem(key)==='1'){
+    intro.style.display='none';
+    return;
+  }
+
+  enterBtn?.addEventListener('click',closeIntro);
+  skipBtn?.addEventListener('click',closeIntro);
+  document.addEventListener('keydown',(e)=>{if(e.key==='Escape') closeIntro();});
+
+  // Auto-close intro so users are not blocked.
+  setTimeout(closeIntro,5600);
+})();
+
+/* Geometric canvas */
+(function(){
+  const c=document.getElementById('geo'),ctx=c.getContext('2d');
+  let W,H,shapes=[];
+  function resize(){W=c.width=innerWidth;H=c.height=innerHeight;}
+  function Sh(){
+    this.x=Math.random()*W;this.y=Math.random()*H;
+    this.s=Math.random()*130+50;
+    this.t=Math.floor(Math.random()*3);
+    this.col=['rgba(37,99,235,.055)','rgba(124,58,237,.048)','rgba(8,145,178,.048)','rgba(219,39,119,.038)'][Math.floor(Math.random()*4)];
+    this.vx=(Math.random()-.5)*.28;this.vy=(Math.random()-.5)*.28;
+    this.r=Math.random()*Math.PI*2;this.vr=(Math.random()-.5)*.004;
+  }
+  Sh.prototype.draw=function(){
+    ctx.save();ctx.translate(this.x,this.y);ctx.rotate(this.r);
+    ctx.fillStyle=this.col;ctx.beginPath();
+    if(this.t===0)ctx.arc(0,0,this.s/2,0,Math.PI*2);
+    else if(this.t===1)ctx.rect(-this.s/2,-this.s/2,this.s,this.s);
+    else{ctx.moveTo(0,-this.s/2);ctx.lineTo(this.s/2,this.s/2);ctx.lineTo(-this.s/2,this.s/2);ctx.closePath();}
+    ctx.fill();ctx.restore();
+  };
+  Sh.prototype.upd=function(){
+    this.x+=this.vx;this.y+=this.vy;this.r+=this.vr;
+    if(this.x<-this.s)this.x=W+this.s;if(this.x>W+this.s)this.x=-this.s;
+    if(this.y<-this.s)this.y=H+this.s;if(this.y>H+this.s)this.y=-this.s;
+  };
+  function init(){resize();shapes=[];for(let i=0;i<20;i++)shapes.push(new Sh());}
+  function loop(){ctx.clearRect(0,0,W,H);shapes.forEach(s=>{s.upd();s.draw();});requestAnimationFrame(loop);}
+  addEventListener('resize',init);init();loop();
+})();
+
+/* Nav */
+const navLinks=document.getElementById('navLinks');
+const navToggleBtn=document.querySelector('.hamburger');
+function closeNav(){navLinks.classList.remove('open');navToggleBtn.setAttribute('aria-expanded','false');}
+function toggleNav(){
+  const isOpen=navLinks.classList.toggle('open');
+  navToggleBtn.setAttribute('aria-expanded',String(isOpen));
+}
+document.querySelectorAll('.nav-links a').forEach(a=>a.addEventListener('click',closeNav));
+document.addEventListener('click',(e)=>{
+  if(!navLinks.classList.contains('open')) return;
+  if(e.target.closest('.hamburger')||e.target.closest('.nav-links')) return;
+  closeNav();
+});
+
+const navSectionLinks=[...document.querySelectorAll('.nav-links a[href^="#"]')];
+const sectionIds=navSectionLinks.map(a=>a.getAttribute('href')).filter(Boolean);
+const sectionObserver=new IntersectionObserver((entries)=>{
+  entries.forEach((entry)=>{
+    if(!entry.isIntersecting) return;
+    const link=navSectionLinks.find(a=>a.getAttribute('href')===`#${entry.target.id}`);
+    if(!link) return;
+    navSectionLinks.forEach(a=>a.classList.remove('active'));
+    link.classList.add('active');
+  });
+},{rootMargin:'-45% 0px -45% 0px',threshold:0});
+sectionIds.forEach((href)=>{
+  const sec=document.querySelector(href);
+  if(sec) sectionObserver.observe(sec);
+});
+
+/* Fade-up */
+const obs=new IntersectionObserver(e=>e.forEach(x=>{if(x.isIntersecting)x.target.classList.add('in');}),{threshold:.1});
+document.querySelectorAll('.fade-up').forEach(el=>obs.observe(el));
+
+// Stagger animation order within each section for a smoother first impression.
+document.querySelectorAll('#home, .section').forEach((block)=>{
+  const nodes=[...block.querySelectorAll('.fade-up')];
+  nodes.forEach((el,i)=>{
+    el.classList.add('reveal-rise');
+    el.style.transitionDelay=`${Math.min(i*70,420)}ms`;
+  });
+});
+
+/* Counter */
+function animCount(el,to){
+  let cur=0;const t=setInterval(()=>{cur+=to/60;if(cur>=to){cur=to;clearInterval(t);}el.textContent=Math.floor(cur);},1400/60);
+}
+const heroObs=new IntersectionObserver(e=>{
+  e.forEach(x=>{if(x.isIntersecting){document.querySelectorAll('.num[data-count]').forEach(el=>{if(!el.done){el.done=1;animCount(el,+el.dataset.count);}});heroObs.disconnect();}});
+},{threshold:.2});
+heroObs.observe(document.getElementById('home'));
+
+const kpiObs=new IntersectionObserver(e=>{
+  e.forEach(x=>{if(x.isIntersecting){
+    document.querySelectorAll('.kpi-v[data-count]').forEach(el=>{if(!el.done){el.done=1;animCount(el,+el.dataset.count);}});
+    document.querySelectorAll('.bar-fill[data-w]').forEach(el=>el.style.width=el.dataset.w+'%');
+    kpiObs.disconnect();
+  }});
+},{threshold:.15});
+kpiObs.observe(document.getElementById('skills'));
+
+/* Blog */
+const blogs=[
+  {title:"How I Use AI Tools to Code 3x Faster as a Junior Developer",meta:"AI & Dev · April 15, 2025 · 5 min read",content:`<p>When I started coding, I spent hours stuck on bugs or trying to remember syntax. Then I discovered AI coding tools — and everything changed.</p><h3>GitHub Copilot: My AI Pair Programmer</h3><p>Copilot suggests entire functions, completes boilerplate, and writes tests right in VS Code. For CRUD operations or form validation, it saves 60–70% of my time.</p><h3>ChatGPT for Debugging</h3><p>I paste broken code, ask ChatGPT to explain what's wrong, and it finds the issue AND explains WHY — helping me learn faster.</p><h3>Claude for Complex Reasoning</h3><p>For architecture decisions, database design, and complex logic, Claude gives structured answers. Great for planning before writing a single line.</p><h3>My AI Workflow</h3><ul><li>Plan features with Claude</li><li>Write first drafts with GitHub Copilot</li><li>Debug with ChatGPT</li><li>Research with Gemini</li></ul><p>Result? I ship 3x faster while actually understanding what I build. AI amplifies your thinking, not replaces it.</p>`},
+  {title:"Building a Task Manager with MERN: Real Lessons Learned",meta:"MERN Stack · March 28, 2025 · 7 min read",content:`<p>During my Zidio internship I built a complete Task Management System. Here's what I actually learned.</p><h3>Architecture</h3><p>React frontend, Node+Express API, MongoDB storage, JWT auth, role-based access: Admin, Team Lead, Member.</p><h3>Real-Time Updates</h3><p>Polling was inefficient. We switched to Socket.io for WebSocket connections — updates became instant.</p><h3>CI/CD with GitHub Actions</h3><p>Tests run on every push. Auto-deploy to staging on merge to main. My first real CI/CD experience — a game changer.</p><h3>Mistakes Made</h3><ul><li>No database schema first — refactored twice</li><li>Skipped error handling on API routes early</li><li>No tests initially — painful to add later</li></ul><p>Real project, real deadline, real team. That's how you actually learn.</p>`},
+  {title:"From BCA Student to Working Developer: My Honest Journey",meta:"Career · March 10, 2025 · 4 min read",content:`<p>The real story — not the highlight reel — of becoming a developer from Bengaluru.</p><h3>Year 1: Confusion</h3><p>C programming felt abstract. What saved me: building a PHP login form. Seeing it work in the browser changed everything.</p><h3>Year 2: Discovery</h3><p>Fell in love with JavaScript and React. Built my first e-commerce project — messy code, but it worked.</p><h3>Year 3: Application</h3><p>Landed Zidio internship → real MERN project → learned proper Git → got WovvTech role.</p><h3>Advice to Year-1 Me</h3><ul><li>Build projects, stop just watching tutorials</li><li>Learn Git from day one</li><li>AI tools are a superpower, not cheating</li><li>Consistency beats intensity</li></ul>`},
+  {title:"WordPress vs React: When to Use Which for Clients",meta:"WordPress · Feb 20, 2025 · 6 min read",content:`<p>I use both professionally. Here's my honest breakdown.</p><h3>Choose WordPress When...</h3><ul><li>Client wants to manage their own content</li><li>Budget is limited, timeline is tight</li><li>It's a blog, portfolio, or business site</li><li>SEO is a priority (WordPress + Yoast is unbeatable)</li></ul><h3>Choose React When...</h3><ul><li>Building a complex web application</li><li>Need real-time features (chat, notifications)</li><li>Performance is critical</li><li>Integrating with complex APIs</li></ul><h3>Rule of Thumb</h3><p>Non-developer needs to update content → WordPress. Developers manage everything, high complexity → React. For most Indian small businesses: WordPress wins every time.</p>`},
+  {title:"How to Land Your First Freelance Client as a Developer in India",meta:"Freelance · Feb 5, 2025 · 5 min read",content:`<p>The freelance market in India is huge but competitive. Here's what works.</p><h3>Step 1: Portfolio First</h3><p>Build 2–3 projects on GitHub. No portfolio = no trust = no clients.</p><h3>Step 2: Free Platforms</h3><ul><li>Fiverr — create a gig, clients find you</li><li>PeoplePerHour — bid freely</li><li>LinkedIn — DM HR and founders directly</li><li>Reddit r/forhire — active community</li></ul><h3>Step 3: Proposals That Stand Out</h3><p>Reference a specific detail from their post. Explain how you'll solve THEIR exact problem. Keep it under 200 words.</p><h3>Step 4: Price Strategically</h3><p>Start slightly below market. Get reviews. Then raise rates.</p>`},
+  {title:"JWT Authentication in Node.js: A Beginner's Complete Guide",meta:"Backend · Jan 18, 2025 · 8 min read",content:`<p>JWT is the most common auth method in modern apps. Here's how it works.</p><h3>What is JWT?</h3><p>A compact, signed token containing user data. Server issues it on login; client sends it with every protected request.</p><h3>The Flow</h3><ul><li>User logs in → server verifies credentials → generates JWT</li><li>Client stores JWT → sends in Authorization header</li><li>Server verifies JWT → grants access</li></ul><h3>Code</h3><p>Install: <code>npm install jsonwebtoken</code>. Sign: <code>jwt.sign({userId}, SECRET, {expiresIn:'7d'})</code>. Verify: <code>jwt.verify(token, SECRET)</code>.</p><h3>Security Tips</h3><ul><li>Use httpOnly cookies for sensitive apps, not localStorage</li><li>Short expiry + refresh tokens</li><li>Always HTTPS in production</li><li>SECRET key in environment variables only</li></ul>`}
+];
+function openBlog(i){const b=blogs[i];document.getElementById('mT').textContent=b.title;document.getElementById('mM').textContent=b.meta;document.getElementById('mC').innerHTML=b.content;document.getElementById('blogModal').classList.add('open');document.body.style.overflow='hidden';}
+function closeBlog(){document.getElementById('blogModal').classList.remove('open');document.body.style.overflow='';}
+function handleMC(e){if(e.target===document.getElementById('blogModal'))closeBlog();}
+document.addEventListener('keydown',(e)=>{if(e.key==='Escape') closeBlog();});
+
+document.querySelectorAll('a[target="_blank"]').forEach((a)=>{a.rel='noopener noreferrer';});
+
+function showToast(msg){
+  const t=document.getElementById('uiToast');
+  t.textContent=msg;
+  t.classList.add('show');
+  clearTimeout(showToast.tm);
+  showToast.tm=setTimeout(()=>t.classList.remove('show'),2200);
+}
+
+document.querySelectorAll('a.coming-soon').forEach((a)=>{
+  a.addEventListener('click',(e)=>{
+    e.preventDefault();
+    showToast(`${a.dataset.title||'This link'} will be available soon.`);
+  });
+});
+
+document.querySelectorAll('.quick-actions [data-placeholder="true"]').forEach((a)=>{
+  a.addEventListener('click',(e)=>{
+    e.preventDefault();
+    showToast(`Update your real ${a.dataset.title||'contact'} link in quick actions.`);
+    document.getElementById('contact')?.scrollIntoView({behavior:'smooth'});
+  });
+});
+
+/* Contact */
+function submitContact(){
+  const n=document.getElementById('cName').value.trim();
+  const e=document.getElementById('cEmail').value.trim();
+  const sub=document.getElementById('cSub').value.trim()||'Portfolio Inquiry';
+  const bgt=document.getElementById('cBgt').value.trim()||'Not specified';
+  const m=document.getElementById('cMsg').value.trim();
+  if(!n||!e||!m){alert('Please fill in Name, Email, and Message.');return;}
+  if(!/^\S+@\S+\.\S+$/.test(e)){alert('Please enter a valid email address.');return;}
+  const body=[`Name: ${n}`,`Email: ${e}`,`Subject: ${sub}`,`Budget: ${bgt}`,'',m].join('\n');
+  window.location.href=`mailto:meetmrgangadhar@gmail.com?subject=${encodeURIComponent(sub)}&body=${encodeURIComponent(body)}`;
+  const ok=document.getElementById('cOk');
+  ok.style.display='block';
+  ['cName','cEmail','cSub','cBgt','cMsg'].forEach(id=>document.getElementById(id).value='');
+  setTimeout(()=>ok.style.display='none',5000);
+}
+
+/* Feedback */
+const FB_KEY='gb_feedback_entries_v1';
+let ufb=[];
+const fbColors=['linear-gradient(135deg,#2563eb,#7c3aed)','linear-gradient(135deg,#0891b2,#059669)','linear-gradient(135deg,#db2777,#d97706)','linear-gradient(135deg,#7c3aed,#db2777)'];
+try{ufb=JSON.parse(localStorage.getItem(FB_KEY)||'[]');if(!Array.isArray(ufb))ufb=[];}catch{ufb=[];}
+function submitFeedback(){
+  const name=document.getElementById('fbName').value.trim();
+  const role=document.getElementById('fbRole').value.trim();
+  const msg=document.getElementById('fbMsg').value.trim();
+  const s=document.querySelector('input[name="stars"]:checked');
+  if(!name||!msg){alert('Please enter your name and feedback.');return;}
+  if(!s){alert('Please select a star rating.');return;}
+  const stars=Math.max(1,Math.min(5,Number(s.value)||0));
+  ufb.unshift({name,role:role||'Visitor',msg,stars});
+  ufb=ufb.slice(0,25);
+  localStorage.setItem(FB_KEY,JSON.stringify(ufb));
+  const ok=document.getElementById('fbOk');ok.style.display='block';
+  document.getElementById('fbName').value='';document.getElementById('fbRole').value='';document.getElementById('fbMsg').value='';
+  if(s)s.checked=false;
+  renderFB();
+  setTimeout(()=>ok.style.display='none',4000);
+}
+function renderFB(){
+  const w=document.getElementById('newFeedbacks');
+  w.innerHTML='';
+  ufb.forEach((f,i)=>{
+    const card=document.createElement('div');
+    card.className='fb-card';
+    card.style.borderLeft='3px solid #2563eb';
+    card.style.animation=`fadeIn .4s ${i*.08}s both`;
+
+    const starDiv=document.createElement('div');
+    starDiv.className='fb-stars';
+    starDiv.textContent='★'.repeat(f.stars)+'☆'.repeat(5-f.stars);
+
+    const text=document.createElement('p');
+    text.className='fb-text';
+    text.textContent=`"${f.msg}"`;
+
+    const author=document.createElement('div');
+    author.className='fb-author';
+
+    const av=document.createElement('div');
+    av.className='fb-av';
+    av.style.background=fbColors[i%4];
+    av.textContent=(f.name&&f.name[0]?f.name[0]:'U').toUpperCase();
+
+    const info=document.createElement('div');
+    info.className='fb-author-info';
+    const h4=document.createElement('h4');
+    h4.textContent=f.name;
+    const p=document.createElement('p');
+    p.textContent=f.role;
+
+    info.appendChild(h4);
+    info.appendChild(p);
+    author.appendChild(av);
+    author.appendChild(info);
+    card.appendChild(starDiv);
+    card.appendChild(text);
+    card.appendChild(author);
+    w.appendChild(card);
+  });
+}
+renderFB();
+</script>
+</body>
+</html>
