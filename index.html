@@ -86,9 +86,10 @@ a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,te
 nav{position:fixed;top:0;left:0;right:0;z-index:999;background:linear-gradient(90deg,rgba(37,99,235,0.92),rgba(124,58,237,0.92));backdrop-filter:blur(20px);border-bottom:1px solid rgba(37,99,235,.13);padding:0 5%;}
 .nav-inner{max-width:1280px;margin:auto;display:flex;align-items:center;justify-content:space-between;gap:1rem;height:66px;}
 .nav-brand{display:flex;align-items:center;gap:.85rem;min-width:0;flex:1 1 auto;}
-.logo{width:54px;height:54px;border-radius:50%;padding:4px;background:linear-gradient(135deg,rgba(255,255,255,.24),rgba(96,165,250,.25),rgba(167,139,250,.22));box-shadow:0 12px 30px rgba(15,23,42,.24),inset 0 0 0 1px rgba(255,255,255,.28);display:grid;place-items:center;overflow:hidden;flex:0 0 auto;position:relative;}
+.logo{width:62px;height:62px;border-radius:50%;padding:4px;background:linear-gradient(135deg,rgba(255,255,255,.24),rgba(96,165,250,.25),rgba(167,139,250,.22));box-shadow:0 12px 30px rgba(15,23,42,.24),inset 0 0 0 1px rgba(255,255,255,.28);display:grid;place-items:center;overflow:hidden;flex:0 0 auto;position:relative;}
 .logo::after{content:'';position:absolute;inset:-10px;border-radius:50%;background:radial-gradient(circle,rgba(255,255,255,.18),transparent 68%);filter:blur(8px);animation:haloPulse 4.8s ease-in-out infinite;}
-.logo img{width:100%;height:100%;object-fit:cover;object-position:50% 16%;transform:scale(1.15);transform-origin:center center;border-radius:50%;display:block;position:relative;z-index:1;}
+.logo img{width:100%;height:100%;object-fit:cover;object-position:center;transform:scale(1.05);transform-origin:center center;border-radius:50%;display:block;position:relative;z-index:1;}
+.logo-smile{font-size:1.8rem;line-height:1;position:relative;z-index:1;filter:drop-shadow(0 2px 4px rgba(15,23,42,.25));}
 .logo-fallback{width:100%;height:100%;border-radius:50%;display:grid;place-items:center;background:linear-gradient(145deg,#0f172a,#1e293b);color:#fff;font-weight:800;font-size:.95rem;letter-spacing:.08em;position:relative;z-index:1;}
 .logo-fallback span{line-height:1}
 .nav-links{display:flex;gap:1.8rem;list-style:none;}
@@ -282,15 +283,15 @@ nav{position:fixed;top:0;left:0;right:0;z-index:999;background:linear-gradient(9
 footer{background:var(--ink);color:#fff;padding:3.5rem 5% 1.8rem;}
 .fi{max-width:1280px;margin:auto;}
 .ft{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:2rem;margin-bottom:2rem;}
-.fb-brand .logo{display:block;margin-bottom:.7rem;}
+.footer-logo{display:inline-flex;align-items:center;justify-content:center;gap:.4rem;padding:.45rem .85rem;border-radius:999px;background:linear-gradient(135deg,rgba(37,99,235,.24),rgba(124,58,237,.24));border:1px solid rgba(148,163,184,.35);color:#fff;font-weight:800;font-size:.9rem;letter-spacing:.04em;margin-bottom:.7rem;}
 .fb-brand p{color:#94a3b8;font-size:.83rem;line-height:1.7;}
 .f-col h4{font-weight:800;font-size:.88rem;margin-bottom:.9rem;color:#e2e8f0;}
 .f-col ul{list-style:none;}
 .f-col ul li{margin-bottom:.48rem;}
 .f-col ul li a{color:#94a3b8;text-decoration:none;font-size:.83rem;transition:.2s;}
 .f-col ul li a:hover{color:#fff;}
-.fb{border-top:1px solid #1e293b;padding-top:1.4rem;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem;}
-.fb p{color:#64748b;font-size:.78rem;}
+.fb{border-top:1px solid #1e293b;padding-top:1.4rem;display:flex;justify-content:center;align-items:center;flex-wrap:wrap;gap:1rem;flex-direction:column;}
+.fb p{color:#64748b;font-size:.78rem;text-align:center;}
 .socials{display:flex;gap:.6rem;}
 .socials a{width:36px;height:36px;border-radius:50%;background:#1e293b;display:flex;align-items:center;justify-content:center;color:#94a3b8;font-size:.88rem;transition:.2s;text-decoration:none;}
 .socials a:hover{background:var(--blue);color:#fff;}
@@ -343,8 +344,8 @@ footer{background:var(--ink);color:#fff;padding:3.5rem 5% 1.8rem;}
   .intro-video{opacity:.48;}
   .intro-avatar{width:126px;height:126px;}
   .header-quote{font-size:.68rem;line-height:1.35;padding:.48rem .8rem;}
-  .logo{width:48px;height:48px;padding:3px;}
-  .logo img{object-position:50% 15%;transform:scale(1.2);}
+  .logo{width:54px;height:54px;padding:3px;}
+  .logo img{object-position:center;transform:scale(1.08);}
 }
 @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;scroll-behavior:auto!important;}}
 </style>
@@ -410,8 +411,7 @@ footer{background:var(--ink);color:#fff;padding:3.5rem 5% 1.8rem;}
   <div class="nav-inner">
     <div class="nav-brand">
       <div class="logo" aria-label="Gangadhara profile photo">
-        <img src="assets/profile.webp" alt="Gangadhara photo" onerror="this.style.display='none';this.nextElementSibling.style.display='grid';"/>
-        <div class="logo-fallback" style="display:none;"><span>GB</span></div>
+        <span class="logo-smile" aria-hidden="true">🙂</span>
       </div>
       <div class="header-quote"><span>“ವಿದ್ಯಾ ವಿನಯಂ ದದಾತಿ”</span><strong>ಜ್ಞಾನವೇ ನಿಜವಾದ ಶಕ್ತಿ</strong></div>
     </div>
@@ -472,20 +472,20 @@ footer{background:var(--ink);color:#fff;padding:3.5rem 5% 1.8rem;}
     <h2 class="s-title fade-up">Skills & KPIs</h2>
     <p class="s-sub fade-up">Real metrics from my development journey — tracked honestly.</p>
     <div class="kpi-grid fade-up">
-      <div class="kpi-card c1"><div class="kpi-em">💻</div><div class="kpi-v" data-count="3">0</div><div class="kpi-l">Years Learning</div><div class="kpi-b stat">Continuous</div></div>
-      <div class="kpi-card c2"><div class="kpi-em">🚀</div><div class="kpi-v" data-count="5">0</div><div class="kpi-l">Tech Stacks</div><div class="kpi-b up">↑ Growing</div></div>
-      <div class="kpi-card c3"><div class="kpi-em">🤖</div><div class="kpi-v" data-count="8">0</div><div class="kpi-l">AI Tools</div><div class="kpi-b up">↑ AI-First</div></div>
-      <div class="kpi-card c4"><div class="kpi-em">📦</div><div class="kpi-v" data-count="5">0</div><div class="kpi-l">Live Projects</div><div class="kpi-b stat">Deployed</div></div>
-      <div class="kpi-card c5"><div class="kpi-em">⚡</div><div class="kpi-v" data-count="4">0</div><div class="kpi-l">Code Languages</div><div class="kpi-b stat">JS·PY·PHP·Java</div></div>
-      <div class="kpi-card c6"><div class="kpi-em">🌐</div><div class="kpi-v" data-count="4">0</div><div class="kpi-l">Spoken Languages</div><div class="kpi-b stat">KN·TE·EN·HI</div></div>
+      <div class="kpi-card c1"><div class="kpi-em">💻</div><div class="kpi-l">Years Learning</div><div class="kpi-b stat">Continuous</div></div>
+      <div class="kpi-card c2"><div class="kpi-em">🚀</div><div class="kpi-l">Tech Stacks</div><div class="kpi-b up">↑ Growing</div></div>
+      <div class="kpi-card c3"><div class="kpi-em">🤖</div><div class="kpi-l">AI Tools</div><div class="kpi-b up">↑ AI-First</div></div>
+      <div class="kpi-card c4"><div class="kpi-em">📦</div><div class="kpi-l">Live Projects</div><div class="kpi-b stat">Deployed</div></div>
+      <div class="kpi-card c5"><div class="kpi-em">⚡</div><div class="kpi-l">Code Languages</div><div class="kpi-b stat">JS·PY·PHP·Java</div></div>
+      <div class="kpi-card c6"><div class="kpi-em">🌐</div><div class="kpi-l">Spoken Languages</div><div class="kpi-b stat">KN·TE·EN·HI</div></div>
     </div>
     <div class="skills-wrap fade-up">
-      <div class="sb"><div class="sb-top"><span class="sb-name"><svg width="15" height="15" viewBox="0 0 32 32"><path fill="#61dafb" d="M16 13.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5zm8.3 2.5c0-.6-.1-1.2-.2-1.8 1.5-.4 2.9-.9 4-1.6 1.4 2.4 1.4 4.8 0 6.8-1.1-.7-2.5-1.2-4-1.6.1-.6.2-1.2.2-1.8zm-16.6 0c0 .6.1 1.2.2 1.8-1.5.4-2.9.9-4 1.6-1.4-2-1.4-4.4 0-6.8 1.1.7 2.5 1.2 4 1.6-.1.6-.2 1.2-.2 1.8zm2.1-5.6c.6-1.3 1.4-2.4 2.2-3.4-2.5.3-4.6 1.4-6 3 1-.3 2.4-.7 3.8-1v1.4zm12.4 0v-1.4c1.4.3 2.8.7 3.8 1-1.4-1.6-3.5-2.7-6-3 .8 1 1.6 2.1 2.2 3.4zm-6.2-3.9c-1.1 0-2.4 1.2-3.4 3.3 1.1-.2 2.2-.3 3.4-.3s2.3.1 3.4.3c-1-2.1-2.3-3.3-3.4-3.3zm-6.2 14.9c-1.4-.3-2.8-.7-3.8-1 1.4 1.6 3.5 2.7 6 3-.8-1-1.6-2.1-2.2-3zm12.4 0c-.6 1.3-1.4 2.4-2.2 3.4 2.5-.3 4.6-1.4 6-3-1 .3-2.4.7-3.8 1zm-6.2 3.9c1.1 0 2.4-1.2 3.4-3.3-1.1.2-2.2.3-3.4.3s-2.3-.1-3.4-.3c1 2.1 2.3 3.3 3.4 3.3z"/></svg> React.js / Frontend</span><span class="sb-pct">88%</span></div><div class="bar-track"><div class="bar-fill" data-w="88" style="background:var(--g1)"></div></div></div>
-      <div class="sb"><div class="sb-top"><span class="sb-name"><i class="fab fa-node-js" style="color:#68a063"></i> Node.js / Express</span><span class="sb-pct">82%</span></div><div class="bar-track"><div class="bar-fill" data-w="82" style="background:var(--g2)"></div></div></div>
-      <div class="sb"><div class="sb-top"><span class="sb-name"><i class="fas fa-database" style="color:#47a248"></i> MongoDB / MySQL</span><span class="sb-pct">80%</span></div><div class="bar-track"><div class="bar-fill" data-w="80" style="background:var(--g3)"></div></div></div>
-      <div class="sb"><div class="sb-top"><span class="sb-name"><i class="fab fa-php" style="color:#7b7fb5"></i> PHP / AJAX / jQuery</span><span class="sb-pct">78%</span></div><div class="bar-track"><div class="bar-fill" data-w="78" style="background:var(--g4)"></div></div></div>
-      <div class="sb"><div class="sb-top"><span class="sb-name"><i class="fab fa-wordpress" style="color:#21759b"></i> WordPress / Elementor</span><span class="sb-pct">85%</span></div><div class="bar-track"><div class="bar-fill" data-w="85" style="background:linear-gradient(135deg,#21759b,#0891b2)"></div></div></div>
-      <div class="sb"><div class="sb-top"><span class="sb-name"><i class="fas fa-robot" style="color:var(--violet)"></i> AI Tools Integration</span><span class="sb-pct">92%</span></div><div class="bar-track"><div class="bar-fill" data-w="92" style="background:linear-gradient(135deg,#7c3aed,#06b6d4)"></div></div></div>
+      <div class="sb"><div class="sb-top"><span class="sb-name"><svg width="15" height="15" viewBox="0 0 32 32"><path fill="#61dafb" d="M16 13.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5zm8.3 2.5c0-.6-.1-1.2-.2-1.8 1.5-.4 2.9-.9 4-1.6 1.4 2.4 1.4 4.8 0 6.8-1.1-.7-2.5-1.2-4-1.6.1-.6.2-1.2.2-1.8zm-16.6 0c0 .6.1 1.2.2 1.8-1.5.4-2.9.9-4 1.6-1.4-2-1.4-4.4 0-6.8 1.1.7 2.5 1.2 4 1.6-.1.6-.2 1.2-.2 1.8zm2.1-5.6c.6-1.3 1.4-2.4 2.2-3.4-2.5.3-4.6 1.4-6 3 1-.3 2.4-.7 3.8-1v1.4zm12.4 0v-1.4c1.4.3 2.8.7 3.8 1-1.4-1.6-3.5-2.7-6-3 .8 1 1.6 2.1 2.2 3.4zm-6.2-3.9c-1.1 0-2.4 1.2-3.4 3.3 1.1-.2 2.2-.3 3.4-.3s2.3.1 3.4.3c-1-2.1-2.3-3.3-3.4-3.3zm-6.2 14.9c-1.4-.3-2.8-.7-3.8-1 1.4 1.6 3.5 2.7 6 3-.8-1-1.6-2.1-2.2-3zm12.4 0c-.6 1.3-1.4 2.4-2.2 3.4 2.5-.3 4.6-1.4 6-3-1 .3-2.4.7-3.8 1zm-6.2 3.9c1.1 0 2.4-1.2 3.4-3.3-1.1.2-2.2.3-3.4.3s-2.3-.1-3.4-.3c1 2.1 2.3 3.3 3.4 3.3z"/></svg> React.js / Frontend</span></div><div class="bar-track"><div class="bar-fill" data-w="88" style="background:var(--g1)"></div></div></div>
+      <div class="sb"><div class="sb-top"><span class="sb-name"><i class="fab fa-node-js" style="color:#68a063"></i> Node.js / Express</span></div><div class="bar-track"><div class="bar-fill" data-w="82" style="background:var(--g2)"></div></div></div>
+      <div class="sb"><div class="sb-top"><span class="sb-name"><i class="fas fa-database" style="color:#47a248"></i> MongoDB / MySQL</span></div><div class="bar-track"><div class="bar-fill" data-w="80" style="background:var(--g3)"></div></div></div>
+      <div class="sb"><div class="sb-top"><span class="sb-name"><i class="fab fa-php" style="color:#7b7fb5"></i> PHP / AJAX / jQuery</span></div><div class="bar-track"><div class="bar-fill" data-w="78" style="background:var(--g4)"></div></div></div>
+      <div class="sb"><div class="sb-top"><span class="sb-name"><i class="fab fa-wordpress" style="color:#21759b"></i> WordPress / Elementor</span></div><div class="bar-track"><div class="bar-fill" data-w="85" style="background:linear-gradient(135deg,#21759b,#0891b2)"></div></div></div>
+      <div class="sb"><div class="sb-top"><span class="sb-name"><i class="fas fa-robot" style="color:var(--violet)"></i> AI Tools Integration</span></div><div class="bar-track"><div class="bar-fill" data-w="92" style="background:linear-gradient(135deg,#7c3aed,#06b6d4)"></div></div></div>
     </div>
     <p class="tc-title fade-up">🔧 Full Tech Stack with Language Symbols</p>
     <div class="tech-grid fade-up">
@@ -733,7 +733,7 @@ footer{background:var(--ink);color:#fff;padding:3.5rem 5% 1.8rem;}
 <footer>
   <div class="fi">
     <div class="ft">
-      <div class="fb-brand"><span class="logo">GB.</span><p>Full-Stack Developer from Bengaluru. Building scalable web apps with MERN, PHP, WordPress & AI tools. Open to freelance & full-time work.</p></div>
+      <div class="fb-brand"><span class="footer-logo">🙂 GB</span><p>Full-Stack Developer from Bengaluru. Building scalable web apps with MERN, PHP, WordPress & AI tools. Open to freelance & full-time work.</p></div>
       <div class="f-col"><h4>Navigate</h4><ul><li><a href="#home">Home</a></li><li><a href="#skills">Skills</a></li><li><a href="#projects">Projects</a></li><li><a href="#experience">Experience</a></li><li><a href="#blog">Blog</a></li><li><a href="#feedback">Feedback</a></li><li><a href="#contact">Contact</a></li></ul></div>
       <div class="f-col"><h4>Tech Stack</h4><ul><li><a href="#skills">React.js / Node.js</a></li><li><a href="#skills">MongoDB / MySQL</a></li><li><a href="#skills">PHP / WordPress</a></li><li><a href="#aitools">AI Integration</a></li><li><a href="#skills">Git / GitHub</a></li></ul></div>
       <div class="f-col"><h4>Contact</h4><ul><li><a href="mailto:meetmrgangadhar@gmail.com">meetmrgangadhar@gmail.com</a></li><li><a href="https://linkedin.com/in/meetmrgangadhar" target="_blank">LinkedIn Profile</a></li><li><a href="https://github.com/meetmrgangadher" target="_blank">GitHub</a></li><li><a href="#contact">Bengaluru, India 🇮🇳</a></li></ul></div>
@@ -940,9 +940,17 @@ function submitContact(){
 
 /* Feedback */
 const FB_KEY='gb_feedback_entries_v1';
+const FB_PRUNE_KEY='gb_feedback_recent_removed_v1';
 let ufb=[];
 const fbColors=['linear-gradient(135deg,#2563eb,#7c3aed)','linear-gradient(135deg,#0891b2,#059669)','linear-gradient(135deg,#db2777,#d97706)','linear-gradient(135deg,#7c3aed,#db2777)'];
 try{ufb=JSON.parse(localStorage.getItem(FB_KEY)||'[]');if(!Array.isArray(ufb))ufb=[];}catch{ufb=[];}
+try{
+  if(localStorage.getItem(FB_PRUNE_KEY)!=='1'&&ufb.length){
+    ufb=ufb.slice(1);
+    localStorage.setItem(FB_KEY,JSON.stringify(ufb));
+  }
+  localStorage.setItem(FB_PRUNE_KEY,'1');
+}catch{}
 function submitFeedback(){
   const name=document.getElementById('fbName').value.trim();
   const role=document.getElementById('fbRole').value.trim();
