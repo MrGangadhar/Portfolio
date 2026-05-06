@@ -171,6 +171,11 @@ nav{position:fixed;top:0;left:0;right:0;z-index:999;background:linear-gradient(9
 .profile-empty .hint{margin-top:.8rem;font-size:.74rem;color:var(--muted);}
 .profile-source-list{display:flex;flex-wrap:wrap;gap:.45rem;margin-top:.9rem;}
 .profile-source-pill{padding:.28rem .68rem;border-radius:999px;background:#eff6ff;color:var(--blue);font-size:.72rem;font-weight:800;}
+.profile-btn-more{display:none;border:none;border-radius:18px;padding:.95rem .8rem;background:var(--white);color:var(--ink);cursor:pointer;font-family:var(--font-body);font-size:.79rem;font-weight:800;letter-spacing:.02em;transition:.22s;box-shadow:var(--shadow-sm);border:1px solid rgba(0,0,0,.06);width:100%;display:flex;align-items:center;justify-content:center;gap:.55rem;}  
+.profile-btn-more i{font-size:.95rem;}
+.profile-btn-more:hover{transform:translateY(-2px);box-shadow:var(--shadow);border-color:rgba(37,99,235,.18);}
+.profile-nav.expanded .profile-btn[data-profile="freelance"],.profile-nav.expanded .profile-btn[data-profile="indeed"],.profile-nav.expanded .profile-btn[data-profile="github"],.profile-nav.expanded .profile-btn[data-profile="upwork"]{display:flex;}
+
 
 /* SECTIONS */
 .section{padding:88px 5%;}
@@ -378,7 +383,9 @@ footer{background:var(--ink);color:#fff;padding:3.5rem 5% 1.8rem;}
   .kpi-grid{grid-template-columns:repeat(2,1fr);}
   .proj-grid,.blog-grid,.ai-grid,.fb-grid{grid-template-columns:1fr;}
   .section{padding:60px 5%;}.ft{grid-template-columns:1fr;}
-  .profile-nav{grid-template-columns:1fr;}
+  .profile-nav{grid-template-columns:repeat(3,1fr);gap:.6rem;}
+  .profile-btn[data-profile="freelance"],.profile-btn[data-profile="indeed"],.profile-btn[data-profile="github"],.profile-btn[data-profile="upwork"]{display:none;}
+  .profile-btn-more{display:block;grid-column:1/-1;}
   .profile-metrics{grid-template-columns:1fr;}
   .profile-bar{grid-template-columns:72px 1fr 28px;}
   .quick-actions{right:12px;bottom:78px;}
@@ -523,6 +530,7 @@ footer{background:var(--ink);color:#fff;padding:3.5rem 5% 1.8rem;}
         <button class="profile-btn" type="button" data-profile="indeed"><i class="fas fa-square-check"></i>Indeed</button>
         <button class="profile-btn" type="button" data-profile="github"><i class="fab fa-github"></i>GitHub</button>
         <button class="profile-btn" type="button" data-profile="upwork"><i class="fas fa-bolt"></i>Upwork</button>
+        <button class="profile-btn-more" type="button" aria-expanded="false"><i class="fas fa-chevron-down"></i>View More</button>
       </div>
       <div class="profile-stage">
         <div id="profileStage"></div>
@@ -1198,6 +1206,23 @@ profileButtons.forEach((btn)=>{
     document.getElementById('profile')?.scrollIntoView({behavior:'smooth',block:'start'});
   });
 });
+
+const profileNav=document.querySelector('.profile-nav');
+const profileMoreBtn=document.querySelector('.profile-btn-more');
+let mobileExpandedState=false;
+
+if(profileMoreBtn){
+  profileMoreBtn.addEventListener('click',()=>{
+    mobileExpandedState=!mobileExpandedState;
+    profileNav.classList.toggle('expanded',mobileExpandedState);
+    profileMoreBtn.setAttribute('aria-expanded',String(mobileExpandedState));
+    if(mobileExpandedState){
+      profileMoreBtn.innerHTML='<i class="fas fa-chevron-up"></i>Show Less';
+    }else{
+      profileMoreBtn.innerHTML='<i class="fas fa-chevron-down"></i>View More';
+    }
+  });
+}
 
 function syncProfileFromHash(){
   const hash=(location.hash||'').toLowerCase();
