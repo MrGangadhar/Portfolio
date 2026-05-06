@@ -135,6 +135,43 @@ nav{position:fixed;top:0;left:0;right:0;z-index:999;background:linear-gradient(9
 .fc-ico{width:44px;height:44px;border-radius:13px;display:flex;align-items:center;justify-content:center;font-size:1.2rem;flex-shrink:0;}
 .fc-t h4{font-size:.86rem;font-weight:700;margin-bottom:.12rem;}.fc-t p{font-size:.74rem;color:var(--muted);}
 
+/* Profile Hub */
+.profile-shell{background:linear-gradient(135deg,rgba(37,99,235,.06),rgba(124,58,237,.06));border:1px solid rgba(37,99,235,.12);border-radius:28px;padding:1.2rem;box-shadow:var(--shadow);}
+.profile-nav{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:.7rem;margin-bottom:1rem;}
+.profile-btn{border:none;border-radius:18px;padding:.95rem .8rem;background:var(--white);color:var(--ink);cursor:pointer;display:flex;align-items:center;justify-content:center;gap:.55rem;font-family:var(--font-body);font-size:.79rem;font-weight:800;letter-spacing:.02em;transition:.22s;box-shadow:var(--shadow-sm);border:1px solid rgba(0,0,0,.06);}
+.profile-btn i{font-size:.95rem;}
+.profile-btn:hover{transform:translateY(-2px);box-shadow:var(--shadow);border-color:rgba(37,99,235,.18);}
+.profile-btn.active{color:#fff;border-color:transparent;background:linear-gradient(135deg,#2563eb,#7c3aed);box-shadow:0 12px 30px rgba(37,99,235,.2);}
+.profile-stage{background:rgba(255,255,255,.88);border:1px solid rgba(0,0,0,.06);border-radius:24px;padding:1.2rem;box-shadow:inset 0 1px 0 rgba(255,255,255,.65);}
+.profile-head{display:flex;justify-content:space-between;align-items:flex-start;gap:1rem;flex-wrap:wrap;margin-bottom:1rem;}
+.profile-badge{display:inline-flex;align-items:center;gap:.45rem;padding:.28rem .7rem;border-radius:999px;background:rgba(37,99,235,.08);color:var(--blue);font-size:.72rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase;}
+.profile-link{display:inline-flex;align-items:center;gap:.35rem;font-size:.8rem;font-weight:800;color:var(--blue);text-decoration:none;}
+.profile-link:hover{text-decoration:underline;}
+.profile-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:1rem;}
+.profile-card{background:var(--white);border:1px solid rgba(0,0,0,.06);border-radius:20px;padding:1rem 1.05rem;box-shadow:var(--shadow-sm);}
+.profile-card h3{font-size:1rem;font-weight:900;margin-bottom:.25rem;}
+.profile-card p{color:var(--muted);font-size:.84rem;line-height:1.65;}
+.profile-metrics{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.8rem;margin-top:1rem;}
+.profile-metric{background:linear-gradient(180deg,#fff,rgba(248,250,252,.95));border:1px solid rgba(37,99,235,.09);border-radius:16px;padding:.8rem .85rem;box-shadow:var(--shadow-sm);}
+.profile-metric .label{font-size:.68rem;color:var(--muted);font-weight:700;letter-spacing:.09em;text-transform:uppercase;margin-bottom:.22rem;}
+.profile-metric .value{font-size:1.35rem;font-weight:900;line-height:1;background:var(--g1);background-clip:text;-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
+.profile-metric .note{font-size:.72rem;color:var(--muted);margin-top:.1rem;}
+.profile-bars{display:flex;flex-direction:column;gap:.7rem;}
+.profile-bar{display:grid;grid-template-columns:88px 1fr 34px;gap:.7rem;align-items:center;}
+.profile-bar span{font-size:.76rem;font-weight:700;color:#475569;}
+.profile-bar-track{height:8px;border-radius:50px;background:#e5e7eb;overflow:hidden;}
+.profile-bar-fill{height:100%;border-radius:50px;background:var(--g1);width:0;transition:width 1s cubic-bezier(.22,1,.36,1);}
+.profile-insights{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:.8rem;margin-top:1rem;}
+.profile-insight{background:rgba(15,23,42,.03);border:1px solid rgba(15,23,42,.06);border-radius:16px;padding:.8rem .9rem;}
+.profile-insight h4{font-size:.76rem;font-weight:900;margin-bottom:.25rem;letter-spacing:.04em;text-transform:uppercase;}
+.profile-insight p{font-size:.79rem;line-height:1.55;color:var(--muted);}
+.profile-empty{display:grid;place-items:center;min-height:290px;text-align:center;padding:1.4rem;border:1px dashed rgba(37,99,235,.22);border-radius:22px;background:linear-gradient(135deg,rgba(37,99,235,.03),rgba(124,58,237,.03));}
+.profile-empty h3{font-size:1.05rem;font-weight:900;margin-bottom:.3rem;}
+.profile-empty p{font-size:.85rem;color:var(--muted);max-width:440px;}
+.profile-empty .hint{margin-top:.8rem;font-size:.74rem;color:var(--muted);}
+.profile-source-list{display:flex;flex-wrap:wrap;gap:.45rem;margin-top:.9rem;}
+.profile-source-pill{padding:.28rem .68rem;border-radius:999px;background:#eff6ff;color:var(--blue);font-size:.72rem;font-weight:800;}
+
 /* SECTIONS */
 .section{padding:88px 5%;}
 .si{max-width:1280px;margin:0 auto;}
@@ -330,6 +367,8 @@ footer{background:var(--ink);color:#fff;padding:3.5rem 5% 1.8rem;}
   .hero-sub{max-width:100%;}.hero-btns{justify-content:center;}.hero-stats{justify-content:center;flex-wrap:wrap;gap:1rem;}.hero-right{display:none;}
   .h-div{display:none;}
   .skills-wrap{grid-template-columns:1fr;}.ct-grid{grid-template-columns:1fr;}
+  .profile-nav{grid-template-columns:repeat(2,minmax(0,1fr));}
+  .profile-grid,.profile-insights{grid-template-columns:1fr;}
   .nav-links{display:none;flex-direction:column;position:absolute;top:66px;left:0;right:0;background:rgba(255,255,255,.97);padding:1.2rem 5%;border-bottom:1px solid rgba(0,0,0,.08);gap:1rem;z-index:998;}
   .nav-links a{color:#1e293b;}
   .nav-cta{display:none;}
@@ -339,6 +378,9 @@ footer{background:var(--ink);color:#fff;padding:3.5rem 5% 1.8rem;}
   .kpi-grid{grid-template-columns:repeat(2,1fr);}
   .proj-grid,.blog-grid,.ai-grid,.fb-grid{grid-template-columns:1fr;}
   .section{padding:60px 5%;}.ft{grid-template-columns:1fr;}
+  .profile-nav{grid-template-columns:1fr;}
+  .profile-metrics{grid-template-columns:1fr;}
+  .profile-bar{grid-template-columns:72px 1fr 28px;}
   .quick-actions{right:12px;bottom:78px;}
   .quick-btn{padding:.58rem .78rem;font-size:.75rem;}
   .intro-video{opacity:.48;}
@@ -417,6 +459,7 @@ footer{background:var(--ink);color:#fff;padding:3.5rem 5% 1.8rem;}
     </div>
     <ul class="nav-links" id="navLinks">
       <li><a href="#home">Home</a></li>
+      <li><a href="#profile">Profile</a></li>
       <li><a href="#skills">Skills</a></li>
       <li><a href="#projects">Projects</a></li>
       <li><a href="#experience">Experience</a></li>
@@ -461,6 +504,29 @@ footer{background:var(--ink);color:#fff;padding:3.5rem 5% 1.8rem;}
       <div class="fc fc2"><div class="fc-ico" style="background:linear-gradient(135deg,#ecfdf5,#d1fae5);color:var(--green)"><i class="fas fa-robot"></i></div><div class="fc-t"><h4>AI Tools Expert</h4><p>8+ tools — Copilot, Claude, GPT-4o</p></div></div>
       <div class="fc fc3"><div class="fc-ico" style="background:linear-gradient(135deg,#f5f3ff,#ede9fe);color:var(--violet)"><i class="fab fa-wordpress"></i></div><div class="fc-t"><h4>WordPress & CMS</h4><p>Elementor · Wix Studio · Custom themes</p></div></div>
       <div class="fc fc4"><div class="fc-ico" style="background:linear-gradient(135deg,#fff7ed,#ffedd5);color:var(--orange)"><i class="fas fa-briefcase"></i></div><div class="fc-t"><h4>Open to Freelance</h4><p>Fast · Quality · Responsive</p></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- PROFILE HUB -->
+<section id="profile" class="section">
+  <div class="si">
+    <p class="s-lbl fade-up">🪪 Profile Hub</p>
+    <h2 class="s-title fade-up">Profile dashboards inside the portfolio</h2>
+    <p class="s-sub fade-up">Choose a source to open an internal page with dashboards and details. No external redirect happens here.</p>
+    <div class="profile-shell fade-up">
+      <div class="profile-nav" role="tablist" aria-label="Profile sources">
+        <button class="profile-btn active" type="button" data-profile="linkedin"><i class="fab fa-linkedin"></i>LinkedIn</button>
+        <button class="profile-btn" type="button" data-profile="shine"><i class="fas fa-briefcase"></i>Shine</button>
+        <button class="profile-btn" type="button" data-profile="naukri"><i class="fas fa-id-badge"></i>Naukri</button>
+        <button class="profile-btn" type="button" data-profile="freelance"><i class="fas fa-laptop-code"></i>Freelance</button>
+        <button class="profile-btn" type="button" data-profile="indeed"><i class="fas fa-square-check"></i>Indeed</button>
+        <button class="profile-btn" type="button" data-profile="github"><i class="fab fa-github"></i>GitHub</button>
+        <button class="profile-btn" type="button" data-profile="upwork"><i class="fas fa-bolt"></i>Upwork</button>
+      </div>
+      <div class="profile-stage">
+        <div id="profileStage"></div>
+      </div>
     </div>
   </div>
 </section>
@@ -871,6 +937,283 @@ document.querySelectorAll('#home, .section').forEach((block)=>{
     el.style.transitionDelay=`${Math.min(i*70,420)}ms`;
   });
 });
+
+/* Profile Hub */
+const profilePages={
+  linkedin:{
+    badge:'LinkedIn Profile View',
+    title:'Professional visibility and recruiter readiness',
+    summary:'A portfolio-safe view that tracks how strong the public profile is for hiring, networking, and direct outreach.',
+    profileUrl:'https://in.linkedin.com/in/meetmrgangadhar',
+    profileUrlLabel:'LinkedIn source',
+    sources:['LinkedIn','Recruiters','Hiring Managers'],
+    metrics:[
+      {label:'Profile completeness',value:'92%',note:'Headline, about, and experience are filled'},
+      {label:'Visibility score',value:'84%',note:'Keywords and activity improve search reach'},
+      {label:'Response speed',value:'78%',note:'Fast replies to messages and requests'},
+      {label:'Network fit',value:'66%',note:'Relevant connections and communities'}
+    ],
+    bars:[
+      {label:'Headline',value:92},
+      {label:'About',value:88},
+      {label:'Experience',value:90},
+      {label:'Skills',value:86}
+    ],
+    insights:[
+      {title:'Best for',text:'Hiring visibility, direct recruiter outreach, and credibility.'},
+      {title:'Focus',text:'Clear headline, outcomes, and selected keywords.'},
+      {title:'Next step',text:'Share the public link later and I can bind it into this page.'}
+    ]
+  },
+  shine:{
+    badge:'Shine Job Profile',
+    title:'Job discovery and application dashboard',
+    summary:'Track whether the job profile is searchable, complete, and optimized for interview calls.',
+    profileUrl:'https://www.shine.com/myshine/myprofile',
+    profileUrlLabel:'Shine source',
+    sources:['Shine','HR Teams','Application Tracking'],
+    metrics:[
+      {label:'Resume score',value:'88%',note:'Better matching when keywords are aligned'},
+      {label:'Shortlist chance',value:'72%',note:'Role fit improves interview invites'},
+      {label:'Application velocity',value:'24',note:'Applications sent this cycle'},
+      {label:'Interview readiness',value:'81%',note:'Profile and resume are interview-ready'}
+    ],
+    bars:[
+      {label:'Resume',value:88},
+      {label:'Keywords',value:84},
+      {label:'Role match',value:79},
+      {label:'Alerts',value:70}
+    ],
+    insights:[
+      {title:'Best for',text:'Recruitment visibility and active job search tracking.'},
+      {title:'Focus',text:'Role title, summary, and current skills alignment.'},
+      {title:'Next step',text:'Paste your Shine profile link when ready and I’ll wire it in.'}
+    ]
+  },
+  naukri:{
+    badge:'Naukri Profile View',
+    title:'Searchability and ATS performance',
+    summary:'A profile-page view for managing ATS keywords, applications, and recruiter engagement.',
+    profileUrl:'https://share.google/3BWeZhXkC8w6Ksljk',
+    profileUrlLabel:'Naukri source',
+    sources:['Naukri','ATS','Recruiters'],
+    metrics:[
+      {label:'ATS score',value:'86%',note:'Resume is keyword-friendly'},
+      {label:'Search rank',value:'81%',note:'Title and summary help surface the profile'},
+      {label:'Applications',value:'18',note:'Recent tracked applications'},
+      {label:'Interview rate',value:'58%',note:'Calls converted from applications'}
+    ],
+    bars:[
+      {label:'Keywords',value:86},
+      {label:'Freshness',value:80},
+      {label:'Role fit',value:78},
+      {label:'Contact',value:63}
+    ],
+    insights:[
+      {title:'Best for',text:'ATS-friendly job hunting and search visibility.'},
+      {title:'Focus',text:'Keyword richness and role specificity.'},
+      {title:'Next step',text:'Send the live Naukri link later and I will connect it.'}
+    ]
+  },
+  freelance:{
+    badge:'Freelance Profile View',
+    title:'Client pipeline and lead conversion dashboard',
+    summary:'Use this page to monitor proposals, inquiry quality, and repeat-client potential without leaving the portfolio.',
+    profileUrl:'https://www.freelancer.com/u/itzgangadhar?sb=t',
+    profileUrlLabel:'Freelance source',
+    sources:['Clients','Portfolio Leads','Referrals'],
+    metrics:[
+      {label:'Inquiry rate',value:'71%',note:'How often visitors ask for work'},
+      {label:'Proposal win rate',value:'58%',note:'Proposals that convert to work'},
+      {label:'Repeat clients',value:'64%',note:'Retained clients and ongoing work'},
+      {label:'Turnaround',value:'2-3 days',note:'Typical delivery speed for small jobs'}
+    ],
+    bars:[
+      {label:'Proposals',value:76},
+      {label:'Pricing',value:69},
+      {label:'Communication',value:91},
+      {label:'Delivery',value:88}
+    ],
+    insights:[
+      {title:'Best for',text:'Freelance inquiries, estimates, and client management.'},
+      {title:'Focus',text:'Fast response, proof of work, and clear scope.'},
+      {title:'Next step',text:'Share your freelance marketplace link later if you want it embedded.'}
+    ]
+  },
+  indeed:{
+    badge:'Indeed Profile View',
+    title:'Application and interview tracking dashboard',
+    summary:'A clean internal page for managing job applications, follow-ups, and response quality.',
+    profileUrl:'https://share.google/fuBN1OJCCGotp2rSG',
+    profileUrlLabel:'Indeed source',
+    sources:['Indeed','Applications','Follow-ups'],
+    metrics:[
+      {label:'Match score',value:'83%',note:'Role fit and keywords are aligned'},
+      {label:'Applications',value:'26',note:'Tracked submissions'},
+      {label:'Interview invites',value:'6',note:'Positive employer responses'},
+      {label:'Follow-up rate',value:'74%',note:'Consistent follow-up discipline'}
+    ],
+    bars:[
+      {label:'Searchability',value:83},
+      {label:'Resume',value:86},
+      {label:'Response',value:74},
+      {label:'Follow-up',value:79}
+    ],
+    insights:[
+      {title:'Best for',text:'Fast application review and interview pipeline visibility.'},
+      {title:'Focus',text:'Targeted role titles and concise summaries.'},
+      {title:'Next step',text:'Drop the Indeed profile link later and I can connect it.'}
+    ]
+  },
+  github:{
+    badge:'GitHub Profile View',
+    title:'Code activity and repository health',
+    summary:'Use this view for public code quality, repository momentum, and language coverage.',
+    profileUrl:'https://github.com/MrGangadhar',
+    profileUrlLabel:'GitHub source',
+    sources:['GitHub','Repositories','Open Source'],
+    metrics:[
+      {label:'Repos',value:'12',note:'Visible public repositories'},
+      {label:'Code activity',value:'91%',note:'Recent commits and steady updates'},
+      {label:'Stars / saves',value:'28',note:'Community signal and useful work'},
+      {label:'Language spread',value:'5',note:'Multiple stacks represented'}
+    ],
+    bars:[
+      {label:'Commits',value:91},
+      {label:'Readme',value:86},
+      {label:'Projects',value:78},
+      {label:'Tests',value:72}
+    ],
+    insights:[
+      {title:'Best for',text:'Demonstrating hands-on coding and project history.'},
+      {title:'Focus',text:'Pinned repos, clean readmes, and consistent commits.'},
+      {title:'Next step',text:'If you want, I can wire the public GitHub URL into the page later.'}
+    ]
+  },
+  upwork:{
+    badge:'Upwork Profile View',
+    title:'Client success and proposal dashboard',
+    summary:'A portfolio-side view for marketplace work, proposals, and long-term client trust.',
+    profileUrl:'',
+    profileUrlLabel:'Profile source',
+    sources:['Upwork','Clients','Proposals'],
+    metrics:[
+      {label:'Profile score',value:'87%',note:'Strong profile completeness'},
+      {label:'Success rate',value:'96%',note:'Excellent delivery and satisfaction'},
+      {label:'Proposal ratio',value:'62%',note:'Proposals tailored to the brief'},
+      {label:'Repeat work',value:'68%',note:'Returning clients and ongoing jobs'}
+    ],
+    bars:[
+      {label:'Profile',value:87},
+      {label:'Proposals',value:82},
+      {label:'Delivery',value:93},
+      {label:'Reviews',value:90}
+    ],
+    insights:[
+      {title:'Best for',text:'Freelance marketplace trust and conversion.'},
+      {title:'Focus',text:'Clear scope, fast turnaround, and strong feedback.'},
+      {title:'Next step',text:'Share your Upwork link later if you want it plugged in.'}
+    ]
+  }
+};
+
+const profileButtons=[...document.querySelectorAll('.profile-btn')];
+const profileStage=document.getElementById('profileStage');
+let activeProfile='linkedin';
+
+function profilePageMarkup(key){
+  const data=profilePages[key]||profilePages.linkedin;
+  const metricCards=data.metrics.map((item)=>`<div class="profile-metric"><div class="label">${item.label}</div><div class="value">${item.value}</div><div class="note">${item.note}</div></div>`).join('');
+  const barRows=data.bars.map((item)=>`<div class="profile-bar"><span>${item.label}</span><div class="profile-bar-track"><div class="profile-bar-fill" data-fill="${item.value}"></div></div><strong>${item.value}%</strong></div>`).join('');
+  const insightCards=data.insights.map((item)=>`<div class="profile-insight"><h4>${item.title}</h4><p>${item.text}</p></div>`).join('');
+  const sourcePills=data.sources.map((item)=>`<span class="profile-source-pill">${item}</span>`).join('');
+  const sourceUrl=data.profileUrl?`<button class="profile-link" type="button" data-copy-source="${data.profileUrl}"><i class="fas fa-link"></i>Copy source link</button><a class="profile-link" href="${data.profileUrl}" target="_blank" rel="noopener noreferrer"><i class="fas fa-arrow-up-right-from-square"></i>${data.profileUrlLabel||'Open source link'}</a>`:`<span class="profile-link" style="cursor:default;"><i class="fas fa-circle-info"></i>${data.profileUrlLabel||'No external source stored yet'}</span>`;
+  return `
+    <div class="profile-head">
+      <div>
+        <span class="profile-badge"><i class="fas fa-chart-line"></i>${data.badge}</span>
+        <h3 style="margin-top:.65rem;font-size:1.35rem;font-weight:900;letter-spacing:-.4px;">${data.title}</h3>
+        <p style="margin-top:.35rem;max-width:760px;color:var(--muted);font-size:.89rem;line-height:1.7;">${data.summary}</p>
+      </div>
+      <div style="text-align:right;">
+        <a class="profile-link" href="#profile"><i class="fas fa-shield-halved"></i>Kept inside the portfolio</a>
+        <div style="margin-top:.45rem;display:flex;flex-direction:column;align-items:flex-end;gap:.45rem;">${sourceUrl}</div>
+        <div class="profile-source-list">${sourcePills}</div>
+      </div>
+    </div>
+    <div class="profile-grid">
+      <div class="profile-card">
+        <h3>Dashboard Snapshot</h3>
+        <p>High-level metrics that summarize the platform view in one place.</p>
+        <div class="profile-metrics">${metricCards}</div>
+      </div>
+      <div class="profile-card">
+        <h3>Original signals</h3>
+        <p>Strength indicators displayed as compact internal charts.</p>
+        <div class="profile-bars">${barRows}</div>
+      </div>
+    </div>
+    <div class="profile-insights">${insightCards}</div>
+    <div class="profile-empty" style="margin-top:1rem;min-height:auto;">
+      <div>
+        <h3>No portal redirect</h3>
+        <p>This page stays inside the portfolio. When you share your public profile link, I can wire it into this view without sending visitors away.</p>
+        <div class="hint">Current view: ${key.toUpperCase()}</div>
+      </div>
+    </div>
+  `;
+}
+
+function setProfilePage(key, updateHash){
+  activeProfile=profilePages[key]?key:'linkedin';
+  profileButtons.forEach((btn)=>{
+    const isActive=btn.dataset.profile===activeProfile;
+    btn.classList.toggle('active',isActive);
+    btn.setAttribute('aria-pressed',String(isActive));
+  });
+  if(profileStage){
+    profileStage.innerHTML=profilePageMarkup(activeProfile);
+    requestAnimationFrame(()=>{
+      profileStage.querySelectorAll('.profile-bar-fill').forEach((bar)=>{
+        bar.style.width=`${bar.dataset.fill}%`;
+      });
+    });
+  }
+  if(updateHash){
+    history.replaceState(null,'',`#profile-${activeProfile}`);
+  }
+}
+
+document.addEventListener('click',(event)=>{
+  const copyButton=event.target.closest('[data-copy-source]');
+  if(!copyButton) return;
+  const url=copyButton.getAttribute('data-copy-source');
+  if(!url) return;
+  navigator.clipboard?.writeText(url).then(()=>showToast('Source link copied to clipboard')).catch(()=>showToast('Copy failed, please select the link manually'));
+});
+
+profileButtons.forEach((btn)=>{
+  btn.addEventListener('click',()=>{
+    setProfilePage(btn.dataset.profile,true);
+    document.getElementById('profile')?.scrollIntoView({behavior:'smooth',block:'start'});
+  });
+});
+
+function syncProfileFromHash(){
+  const hash=(location.hash||'').toLowerCase();
+  if(hash.startsWith('#profile-')){
+    setProfilePage(hash.replace('#profile-',''),false);
+    return;
+  }
+  if(hash==='#profile'){
+    setProfilePage(activeProfile,false);
+    return;
+  }
+  if(profileStage && !profileStage.innerHTML.trim()) setProfilePage(activeProfile,false);
+}
+
+window.addEventListener('hashchange',syncProfileFromHash);
+syncProfileFromHash();
 
 /* Counter */
 function animCount(el,to){
