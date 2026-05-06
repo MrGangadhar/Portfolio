@@ -175,7 +175,15 @@ nav{position:fixed;top:0;left:0;right:0;z-index:999;background:linear-gradient(9
 .profile-btn-more i{font-size:.95rem;}
 .profile-btn-more:hover{transform:translateY(-2px);box-shadow:var(--shadow);border-color:rgba(37,99,235,.18);}
 .profile-nav.expanded .profile-btn[data-profile="freelance"],.profile-nav.expanded .profile-btn[data-profile="indeed"],.profile-nav.expanded .profile-btn[data-profile="github"],.profile-nav.expanded .profile-btn[data-profile="upwork"]{display:flex;}
-
+.profile-modal{display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,.5);z-index:9999;overflow-y:auto;backdrop-filter:blur(4px);}
+.profile-modal.active{display:flex;align-items:flex-start;justify-content:center;padding:2rem 1rem;}
+.profile-modal-content{background:var(--white);border-radius:24px;max-width:900px;width:100%;margin-top:2rem;padding:2rem;box-shadow:0 20px 60px rgba(0,0,0,.15);position:relative;}
+.profile-modal-close{position:absolute;top:1.5rem;right:1.5rem;width:40px;height:40px;border:none;border-radius:50%;background:rgba(0,0,0,.06);cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:1.3rem;color:var(--ink);transition:.22s;}
+.profile-modal-close:hover{background:rgba(0,0,0,.12);transform:rotate(90deg);}
+@media(max-width:768px){
+  .profile-modal-content{margin-top:1rem;padding:1.5rem;}
+  .profile-modal-close{width:36px;height:36px;font-size:1.1rem;top:1rem;right:1rem;}
+}
 
 /* SECTIONS */
 .section{padding:88px 5%;}
@@ -534,6 +542,13 @@ footer{background:var(--ink);color:#fff;padding:3.5rem 5% 1.8rem;}
       </div>
       <div class="profile-stage">
         <div id="profileStage"></div>
+        <!-- Full-page modal for expanded profile buttons -->
+        <div id="profileModal" class="profile-modal">
+          <div class="profile-modal-content">
+            <button class="profile-modal-close" type="button" aria-label="Close dashboard"><i class="fas fa-times"></i></button>
+            <div id="profileModalStage"></div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -1202,14 +1217,51 @@ document.addEventListener('click',(event)=>{
 
 profileButtons.forEach((btn)=>{
   btn.addEventListener('click',()=>{
-    setProfilePage(btn.dataset.profile,true);
-    document.getElementById('profile')?.scrollIntoView({behavior:'smooth',block:'start'});
+    const profile=btn.dataset.profile;
+    const isHiddenButton=['freelance','indeed','github','upwork'].includes(profile)&&mobileExpandedState;
+    if(isHiddenButton){
+      showProfileModal(profile);
+    }else{
+      setProfilePage(profile,true);
+      document.getElementById('profile')?.scrollIntoView({behavior:'smooth',block:'start'});
+    }
   });
 });
 
 const profileNav=document.querySelector('.profile-nav');
 const profileMoreBtn=document.querySelector('.profile-btn-more');
+const profileModal=document.getElementById('profileModal');
+const profileModalClose=document.querySelector('.profile-modal-close');
 let mobileExpandedState=false;
+
+function showProfileModal(key){
+  const modalStage=document.getElementById('profileModalStage');
+  if(modalStage){
+    modalStage.innerHTML=profilePageMarkup(key);
+    requestAnimationFrame(()=>{
+      modalStage.querySelectorAll('.profile-bar-fill').forEach((bar)=>{
+        bar.style.width=`${bar.dataset.fill}%`;
+      });
+    });
+  }
+  profileModal.classList.add('active');
+  document.body.style.overflow='hidden';
+}
+
+function closeProfileModal(){
+  profileModal.classList.remove('active');
+  document.body.style.overflow='';
+}
+
+if(profileModalClose){
+  profileModalClose.addEventListener('click',closeProfileModal);
+}
+
+profileModal.addEventListener('click',(e)=>{
+  if(e.target===profileModal){
+    closeProfileModal();
+  }
+});
 
 if(profileMoreBtn){
   profileMoreBtn.addEventListener('click',()=>{
@@ -1220,6 +1272,7 @@ if(profileMoreBtn){
       profileMoreBtn.innerHTML='<i class="fas fa-chevron-up"></i>Show Less';
     }else{
       profileMoreBtn.innerHTML='<i class="fas fa-chevron-down"></i>View More';
+      closeProfileModal();
     }
   });
 }
