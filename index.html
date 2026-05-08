@@ -262,6 +262,10 @@ nav{position:fixed;top:0;left:0;right:0;z-index:999;background:linear-gradient(9
 
 /* AI Tools */
 .ai-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:1.1rem;}
+.ai-grid.dashboard-grid .ai-card:nth-child(n+2){display:none;}
+.ai-grid.dashboard-grid.expanded .ai-card:nth-child(n+2){display:flex;}
+.dashboard-show-more-btn{background:var(--g1);color:#fff;border:none;padding:.72rem 1.8rem;border-radius:50px;font-family:var(--font-body);font-size:.9rem;font-weight:700;cursor:pointer;transition:.2s;display:none;align-items:center;gap:.5rem;margin-top:1rem;}
+.dashboard-show-more-btn:hover{opacity:.88;transform:translateY(-2px);}
 .ai-card{background:var(--white);border:1px solid rgba(0,0,0,.07);border-radius:var(--r);padding:1.3rem;display:flex;align-items:flex-start;gap:.9rem;transition:.3s;}
 .ai-card:hover{transform:translateY(-4px);box-shadow:var(--shadow);}
 .ai-ico{width:44px;height:44px;border-radius:13px;display:flex;align-items:center;justify-content:center;font-size:1.2rem;flex-shrink:0;}
@@ -374,6 +378,9 @@ footer{background:var(--ink);color:#fff;padding:3.5rem 5% 1.8rem;}
 @keyframes riseUp{from{opacity:0;transform:translateY(16px) scale(.985);}to{opacity:1;transform:translateY(0) scale(1);}}
 
 /* Responsive */
+@media(min-width:641px){
+  .ai-grid.dashboard-grid .ai-card:nth-child(n+2){display:flex;}
+}
 @media(max-width:1100px){.kpi-grid{grid-template-columns:repeat(3,1fr);}.ft{grid-template-columns:1fr 1fr;}}
 @media(max-width:900px){
   .hero-wrap{grid-template-columns:1fr;text-align:center;}
@@ -403,6 +410,7 @@ footer{background:var(--ink);color:#fff;padding:3.5rem 5% 1.8rem;}
   .header-quote{font-size:.68rem;line-height:1.35;padding:.48rem .8rem;}
   .logo{width:54px;height:54px;padding:3px;}
   .logo img{object-position:center;transform:scale(1.08);}
+  .dashboard-show-more-btn{display:inline-flex;}
 }
 @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;scroll-behavior:auto!important;}}
 </style>
@@ -639,7 +647,7 @@ footer{background:var(--ink);color:#fff;padding:3.5rem 5% 1.8rem;}
           <h3>Task Management System</h3>
           <p>Full MERN stack — real-time notifications, JWT auth, 3 user roles, 15+ REST API endpoints, CI/CD via GitHub Actions. Built during Zidio internship.</p>
           <div class="proj-tags"><span class="tag bl">React.js</span><span class="tag bl">Node.js</span><span class="tag bl">MongoDB</span><span class="tag bl">JWT</span><span class="tag bl">CI/CD</span></div>
-          <div class="proj-links"><a href="https://github.com/meetmrgangadher" target="_blank"><i class="fab fa-github"></i> GitHub</a><a href="#" class="dm coming-soon" data-title="Task Management System"><i class="fas fa-external-link-alt"></i> Live Demo</a></div>
+          <div class="proj-links"><a href="#" class="coming-soon" data-title="GitHub"><i class="fab fa-github"></i> GitHub</a><a href="#" class="dm coming-soon" data-title="Task Management System"><i class="fas fa-external-link-alt"></i> Live Demo</a></div>
         </div>
       </div>
       <div class="proj-card fade-up">
@@ -648,7 +656,7 @@ footer{background:var(--ink);color:#fff;padding:3.5rem 5% 1.8rem;}
           <h3>E-Commerce Application</h3>
           <p>Full e-commerce platform with product catalog, cart & checkout, JWT auth, order management, responsive TailwindCSS UI, and complete REST API.</p>
           <div class="proj-tags"><span class="tag gr">React.js</span><span class="tag gr">Express</span><span class="tag gr">MongoDB</span><span class="tag gr">TailwindCSS</span></div>
-          <div class="proj-links"><a href="https://github.com/meetmrgangadher" target="_blank"><i class="fab fa-github"></i> GitHub</a><a href="#" class="dm coming-soon" data-title="E-Commerce Application"><i class="fas fa-external-link-alt"></i> Live Demo</a></div>
+          <div class="proj-links"><a href="#" class="coming-soon" data-title="GitHub"><i class="fab fa-github"></i> GitHub</a><a href="#" class="dm coming-soon" data-title="E-Commerce Application"><i class="fas fa-external-link-alt"></i> Live Demo</a></div>
         </div>
       </div>
       <div class="proj-card fade-up">
@@ -657,7 +665,7 @@ footer{background:var(--ink);color:#fff;padding:3.5rem 5% 1.8rem;}
           <h3>Campus Recruitment Management</h3>
           <p>3-module system (Admin, Company, Candidate) with real-time AJAX updates, dynamic reports, secure MySQL database, jQuery forms, and role dashboards.</p>
           <div class="proj-tags"><span class="tag vi">PHP</span><span class="tag vi">MySQL</span><span class="tag vi">AJAX</span><span class="tag vi">jQuery</span></div>
-          <div class="proj-links"><a href="https://github.com/meetmrgangadher" target="_blank"><i class="fab fa-github"></i> GitHub</a><a href="#" class="dm coming-soon" data-title="Campus Recruitment Management"><i class="fas fa-external-link-alt"></i> Live Demo</a></div>
+          <div class="proj-links"><a href="#" class="coming-soon" data-title="GitHub"><i class="fab fa-github"></i> GitHub</a><a href="#" class="dm coming-soon" data-title="Campus Recruitment Management"><i class="fas fa-external-link-alt"></i> Live Demo</a></div>
         </div>
       </div>
       <div class="proj-card fade-up">
@@ -666,7 +674,7 @@ footer{background:var(--ink);color:#fff;padding:3.5rem 5% 1.8rem;}
           <h3>AI Portfolio Chatbot</h3>
           <p>Intelligent chatbot answering visitor questions about skills, availability, and projects in real-time using GPT-4o API with a custom React frontend interface.</p>
           <div class="proj-tags"><span class="tag or">React.js</span><span class="tag or">GPT-4o API</span><span class="tag or">Node.js</span><span class="tag or">AI</span></div>
-          <div class="proj-links"><a href="https://github.com/meetmrgangadher" target="_blank"><i class="fab fa-github"></i> GitHub</a><a href="#" class="dm coming-soon" data-title="AI Portfolio Chatbot"><i class="fas fa-external-link-alt"></i> Live Demo</a></div>
+          <div class="proj-links"><a href="#" class="coming-soon" data-title="GitHub"><i class="fab fa-github"></i> GitHub</a><a href="#" class="dm coming-soon" data-title="AI Portfolio Chatbot"><i class="fas fa-external-link-alt"></i> Live Demo</a></div>
         </div>
       </div>
       <div class="proj-card fade-up">
@@ -675,7 +683,7 @@ footer{background:var(--ink);color:#fff;padding:3.5rem 5% 1.8rem;}
           <h3>Developer Analytics Dashboard</h3>
           <p>Real-time analytics tracking GitHub commits, project health, and coding streaks. Built with React, Chart.js, GitHub API, and dark/light mode toggle.</p>
           <div class="proj-tags"><span class="tag pk">React.js</span><span class="tag pk">Chart.js</span><span class="tag pk">GitHub API</span></div>
-          <div class="proj-links"><a href="https://github.com/meetmrgangadher" target="_blank"><i class="fab fa-github"></i> GitHub</a><a href="#" class="dm coming-soon" data-title="Developer Analytics Dashboard"><i class="fas fa-external-link-alt"></i> Coming Soon</a></div>
+          <div class="proj-links"><a href="#" class="coming-soon" data-title="GitHub"><i class="fab fa-github"></i> GitHub</a><a href="#" class="dm coming-soon" data-title="Developer Analytics Dashboard"><i class="fas fa-external-link-alt"></i> Coming Soon</a></div>
         </div>
       </div>
       <div class="proj-card fade-up">
@@ -688,10 +696,13 @@ footer{background:var(--ink);color:#fff;padding:3.5rem 5% 1.8rem;}
         </div>
       </div>
     </div>
-    <div class="ai-grid fade-up" style="margin-top:1.35rem;">
-      <a class="ai-card" href="samples/adsr-sample-1-kpi-dashboard.html" target="_blank" style="text-decoration:none;color:inherit;"><div class="ai-ico" style="background:#eff6ff;color:var(--blue)"><i class="fas fa-table"></i></div><div><h4>Sample 1: Raw Data to KPI Dashboard</h4><p>Visual KPI dashboard sample with weekly performance and channel efficiency metrics.</p></div></a>
-      <a class="ai-card" href="samples/adsr-sample-2-audit-findings.html" target="_blank" style="text-decoration:none;color:inherit;"><div class="ai-ico" style="background:#ecfdf5;color:var(--green)"><i class="fas fa-magnifying-glass-chart"></i></div><div><h4>Sample 2: Audit Findings Report</h4><p>Distinct audit-first sample showing data quality scores, critical findings, and fix matrix.</p></div></a>
-      <a class="ai-card" href="samples/adsr-sample-3-executive-summary.html" target="_blank" style="text-decoration:none;color:inherit;"><div class="ai-ico" style="background:#fff7ed;color:var(--orange)"><i class="fas fa-file-powerpoint"></i></div><div><h4>Sample 3: Executive Summary Deck</h4><p>Leadership summary sample focused on decisions, budget shifts, and 30/60/90 roadmap.</p></div></a>
+    <div class="dashboard-container">
+      <div class="ai-grid dashboard-grid fade-up" style="margin-top:1.35rem;">
+        <a class="ai-card" href="samples/adsr-sample-1-kpi-dashboard.html" target="_blank" style="text-decoration:none;color:inherit;"><div class="ai-ico" style="background:#eff6ff;color:var(--blue)"><i class="fas fa-table"></i></div><div><h4>Sample 1: Raw Data to KPI Dashboard</h4><p>Visual KPI dashboard sample with weekly performance and channel efficiency metrics.</p></div></a>
+        <a class="ai-card" href="samples/adsr-sample-2-audit-findings.html" target="_blank" style="text-decoration:none;color:inherit;"><div class="ai-ico" style="background:#ecfdf5;color:var(--green)"><i class="fas fa-magnifying-glass-chart"></i></div><div><h4>Sample 2: Audit Findings Report</h4><p>Distinct audit-first sample showing data quality scores, critical findings, and fix matrix.</p></div></a>
+        <a class="ai-card" href="samples/adsr-sample-3-executive-summary.html" target="_blank" style="text-decoration:none;color:inherit;"><div class="ai-ico" style="background:#fff7ed;color:var(--orange)"><i class="fas fa-file-powerpoint"></i></div><div><h4>Sample 3: Executive Summary Deck</h4><p>Leadership summary sample focused on decisions, budget shifts, and 30/60/90 roadmap.</p></div></a>
+      </div>
+      <button class="dashboard-show-more-btn" type="button" aria-expanded="false"><i class="fas fa-chevron-down"></i>Show More Dashboards</button>
     </div>
   </div>
 </section>
@@ -1338,9 +1349,25 @@ function showToast(msg){
 document.querySelectorAll('a.coming-soon').forEach((a)=>{
   a.addEventListener('click',(e)=>{
     e.preventDefault();
-    showToast(`${a.dataset.title||'This link'} will be available soon.`);
+    showToast(`${a.dataset.title||'This link'} integration will be soon.`);
   });
 });
+
+/* Dashboard Show More */
+const dashboardShowMoreBtn=document.querySelector('.dashboard-show-more-btn');
+const dashboardGrid=document.querySelector('.ai-grid.dashboard-grid');
+if(dashboardShowMoreBtn && dashboardGrid){
+  dashboardShowMoreBtn.addEventListener('click',()=>{
+    const isExpanded=dashboardGrid.classList.contains('expanded');
+    dashboardGrid.classList.toggle('expanded',!isExpanded);
+    dashboardShowMoreBtn.setAttribute('aria-expanded',String(!isExpanded));
+    if(!isExpanded){
+      dashboardShowMoreBtn.innerHTML='<i class="fas fa-chevron-up"></i>Show Less';
+    }else{
+      dashboardShowMoreBtn.innerHTML='<i class="fas fa-chevron-down"></i>Show More Dashboards';
+    }
+  });
+}
 
 /* Contact */
 function submitContact(){
