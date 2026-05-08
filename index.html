@@ -262,10 +262,9 @@ nav{position:fixed;top:0;left:0;right:0;z-index:999;background:linear-gradient(9
 
 /* AI Tools */
 .ai-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:1.1rem;}
-.ai-grid.dashboard-grid .ai-card:nth-child(n+2){display:none;}
-.ai-grid.dashboard-grid.expanded .ai-card:nth-child(n+2){display:flex;}
-.dashboard-show-more-btn{background:var(--g1);color:#fff;border:none;padding:.72rem 1.8rem;border-radius:50px;font-family:var(--font-body);font-size:.9rem;font-weight:700;cursor:pointer;transition:.2s;display:none;align-items:center;gap:.5rem;margin-top:1rem;}
-.dashboard-show-more-btn:hover{opacity:.88;transform:translateY(-2px);}
+.ai-grid.dashboard-grid{display:none;}
+.dashboard-show-more-btn{background:var(--g1);color:#fff;border:none;padding:.72rem 1.8rem;border-radius:50px;font-family:var(--font-body);font-size:.9rem;font-weight:700;cursor:pointer;transition:.2s;display:inline-flex;align-items:center;gap:.5rem;margin-top:1rem;}
+.dashboard-show-more-btn:hover{opacity:.88;transform:translateY(-2px);} 
 .ai-card{background:var(--white);border:1px solid rgba(0,0,0,.07);border-radius:var(--r);padding:1.3rem;display:flex;align-items:flex-start;gap:.9rem;transition:.3s;}
 .ai-card:hover{transform:translateY(-4px);box-shadow:var(--shadow);}
 .ai-ico{width:44px;height:44px;border-radius:13px;display:flex;align-items:center;justify-content:center;font-size:1.2rem;flex-shrink:0;}
@@ -534,7 +533,7 @@ footer{background:var(--ink);color:#fff;padding:3.5rem 5% 1.8rem;}
 <!-- PROFILE HUB -->
 <section id="profile" class="section">
   <div class="si">
-    <p class="s-lbl fade-up">🪪 Profile Hub</p>
+    <p class="s-lbl fade-up">Profiles</p>
     <h2 class="s-title fade-up">Profile dashboards inside the portfolio</h2>
     <p class="s-sub fade-up">Choose a source to open an internal page with dashboards and details. No external redirect happens here.</p>
     <div class="profile-shell fade-up">
@@ -565,7 +564,7 @@ footer{background:var(--ink);color:#fff;padding:3.5rem 5% 1.8rem;}
 <!-- SKILLS -->
 <section id="skills" class="section alt">
   <div class="si">
-    <p class="s-lbl fade-up">📊 Dashboard</p>
+    <p class="s-lbl fade-up">Dashboards</p>
     <h2 class="s-title fade-up">Skills & KPIs</h2>
     <p class="s-sub fade-up">Real metrics from my development journey — tracked honestly.</p>
     <div class="kpi-grid fade-up">
@@ -637,7 +636,7 @@ footer{background:var(--ink);color:#fff;padding:3.5rem 5% 1.8rem;}
 <!-- PROJECTS -->
 <section id="projects" class="section">
   <div class="si">
-    <p class="s-lbl fade-up">🛠️ Portfolio</p>
+    <p class="s-lbl fade-up">Projects</p>
     <h2 class="s-title fade-up">Projects Built & Deployed</h2>
     <p class="s-sub fade-up">Real-world apps — designed, coded, and live.</p>
     <div class="proj-grid">
@@ -710,7 +709,7 @@ footer{background:var(--ink);color:#fff;padding:3.5rem 5% 1.8rem;}
 <!-- EXPERIENCE -->
 <section id="experience" class="section alt">
   <div class="si">
-    <p class="s-lbl fade-up">💼 Career</p>
+    <p class="s-lbl fade-up">Experience</p>
     <h2 class="s-title fade-up">Work Experience</h2>
     <p class="s-sub fade-up">My professional journey — from intern to enterprise support.</p>
     <div class="timeline fade-up">
@@ -724,7 +723,7 @@ footer{background:var(--ink);color:#fff;padding:3.5rem 5% 1.8rem;}
 <!-- AI TOOLS -->
 <section id="aitools" class="section">
   <div class="si">
-    <p class="s-lbl fade-up">🤖 AI Expertise</p>
+    <p class="s-lbl fade-up">AI Tools</p>
     <h2 class="s-title fade-up">AI Tools I Use Daily</h2>
     <p class="s-sub fade-up">Leveraging cutting-edge AI to build smarter and ship faster.</p>
     <div class="ai-grid fade-up">
@@ -743,7 +742,7 @@ footer{background:var(--ink);color:#fff;padding:3.5rem 5% 1.8rem;}
 <!-- BLOG -->
 <section id="blog" class="section alt">
   <div class="si">
-    <p class="s-lbl fade-up">📝 Vlog & Blog</p>
+    <p class="s-lbl fade-up">Blog</p>
     <h2 class="s-title fade-up">Thoughts & Insights</h2>
     <p class="s-sub fade-up">Sharing what I learn about development, AI, and tech careers.</p>
     <div class="blog-grid">
@@ -760,7 +759,7 @@ footer{background:var(--ink);color:#fff;padding:3.5rem 5% 1.8rem;}
 <!-- FEEDBACK -->
 <section id="feedback" class="section">
   <div class="si">
-    <p class="s-lbl fade-up">⭐ Testimonials</p>
+    <p class="s-lbl fade-up">Testimonials</p>
     <h2 class="s-title fade-up">Customer Feedback</h2>
     <p class="s-sub fade-up">What clients, mentors, and colleagues say about working with me.</p>
     <div class="fb-wrap fade-up">
@@ -800,7 +799,7 @@ footer{background:var(--ink);color:#fff;padding:3.5rem 5% 1.8rem;}
 <!-- CONTACT -->
 <section id="contact" class="section alt">
   <div class="si">
-    <p class="s-lbl fade-up">📬 Get In Touch</p>
+    <p class="s-lbl fade-up">Contact</p>
     <h2 class="s-title fade-up">Let's Work Together</h2>
     <div class="ct-grid fade-up">
       <div>
@@ -865,6 +864,21 @@ footer{background:var(--ink);color:#fff;padding:3.5rem 5% 1.8rem;}
   <div class="modal-box">
     <button class="modal-close" onclick="closeBlog()"><i class="fas fa-times"></i></button>
     <h2 id="mT"></h2><div class="modal-meta" id="mM"></div><div class="modal-content" id="mC"></div>
+  </div>
+</div>
+
+<!-- DASHBOARDS MODAL -->
+<div class="modal-overlay" id="dashboardsModal">
+  <div class="modal-box">
+    <button class="modal-close" onclick="closeDashboards()"><i class="fas fa-times"></i></button>
+    <h2>Dashboards</h2>
+    <div class="modal-content">
+      <div class="ai-grid" style="margin-top:0;">
+        <a class="ai-card" href="samples/adsr-sample-1-kpi-dashboard.html" target="_blank" style="text-decoration:none;color:inherit;"><div class="ai-ico" style="background:#eff6ff;color:var(--blue)"><i class="fas fa-table"></i></div><div><h4>Sample 1: Raw Data to KPI Dashboard</h4><p>Visual KPI dashboard sample with weekly performance and channel efficiency metrics.</p></div></a>
+        <a class="ai-card" href="samples/adsr-sample-2-audit-findings.html" target="_blank" style="text-decoration:none;color:inherit;"><div class="ai-ico" style="background:#ecfdf5;color:var(--green)"><i class="fas fa-magnifying-glass-chart"></i></div><div><h4>Sample 2: Audit Findings Report</h4><p>Distinct audit-first sample showing data quality scores, critical findings, and fix matrix.</p></div></a>
+        <a class="ai-card" href="samples/adsr-sample-3-executive-summary.html" target="_blank" style="text-decoration:none;color:inherit;"><div class="ai-ico" style="background:#fff7ed;color:var(--orange)"><i class="fas fa-file-powerpoint"></i></div><div><h4>Sample 3: Executive Summary Deck</h4><p>Leadership summary sample focused on decisions, budget shifts, and 30/60/90 roadmap.</p></div></a>
+      </div>
+    </div>
   </div>
 </div>
 
@@ -1353,20 +1367,21 @@ document.querySelectorAll('a.coming-soon').forEach((a)=>{
   });
 });
 
-/* Dashboard Show More */
+/* Dashboard Show More: open dashboards modal */
 const dashboardShowMoreBtn=document.querySelector('.dashboard-show-more-btn');
-const dashboardGrid=document.querySelector('.ai-grid.dashboard-grid');
-if(dashboardShowMoreBtn && dashboardGrid){
+const dashboardsModal=document.getElementById('dashboardsModal');
+function closeDashboards(){
+  if(!dashboardsModal) return;
+  dashboardsModal.classList.remove('open');
+  document.body.style.overflow='';
+}
+if(dashboardShowMoreBtn && dashboardsModal){
   dashboardShowMoreBtn.addEventListener('click',()=>{
-    const isExpanded=dashboardGrid.classList.contains('expanded');
-    dashboardGrid.classList.toggle('expanded',!isExpanded);
-    dashboardShowMoreBtn.setAttribute('aria-expanded',String(!isExpanded));
-    if(!isExpanded){
-      dashboardShowMoreBtn.innerHTML='<i class="fas fa-chevron-up"></i>Show Less';
-    }else{
-      dashboardShowMoreBtn.innerHTML='<i class="fas fa-chevron-down"></i>Show More Dashboards';
-    }
+    dashboardsModal.classList.add('open');
+    document.body.style.overflow='hidden';
   });
+  dashboardsModal.addEventListener('click',(e)=>{ if(e.target===dashboardsModal) closeDashboards(); });
+  document.addEventListener('keydown',(e)=>{ if(e.key==='Escape') closeDashboards(); });
 }
 
 /* Contact */
